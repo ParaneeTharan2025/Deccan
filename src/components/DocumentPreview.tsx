@@ -28,6 +28,15 @@ export default function DocumentPreview({
 }: DocumentPreviewProps) {
   const [fileUrls, setFileUrls] = useState<Record<string, string>>({});
   const [loading, setLoading] = useState(true);
+  const [previewModal, setPreviewModal] = useState<{
+    isOpen: boolean;
+    document: Document | null;
+    url: string;
+  }>({
+    isOpen: false,
+    document: null,
+    url: "",
+  });
 
   useEffect(() => {
     const getFileUrls = async () => {
@@ -66,93 +75,29 @@ export default function DocumentPreview({
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
   };
 
-  const getFileIcon = (fileType: string, mimeType: string) => {
+  const getFileIcon = (fileType: string) => {
     if (fileType === "image") {
-      return (
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <rect
-            x="3"
-            y="3"
-            width="18"
-            height="18"
-            rx="2"
-            ry="2"
-            stroke="currentColor"
-            strokeWidth="2"
-          />
-          <circle
-            cx="8.5"
-            cy="8.5"
-            r="1.5"
-            stroke="currentColor"
-            strokeWidth="2"
-          />
-          <polyline
-            points="21,15 16,10 5,21"
-            stroke="currentColor"
-            strokeWidth="2"
-          />
-        </svg>
-      );
+      return "🖼️";
     } else if (fileType === "pdf") {
-      return (
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
-            stroke="#dc2626"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <polyline
-            points="14,2 14,8 20,8"
-            stroke="#dc2626"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <text x="12" y="16" textAnchor="middle" fontSize="8" fill="#dc2626">
-            PDF
-          </text>
-        </svg>
-      );
+      return "📄";
     } else {
-      return (
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M14 2H6C5.46957 2 4.96086 2.21071 4.58579 2.58579C4.21071 2.96086 4 3.46957 4 4V20C4 20.5304 4.21071 21.0391 4.58579 21.4142C4.96086 21.7893 5.46957 22 6 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V8L14 2Z"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <polyline
-            points="14,2 14,8 20,8"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      );
+      return "📎";
+    }
+  };
+
+  const handleAttachmentClick = (document: Document) => {
+    const url = fileUrls[document.id];
+    if (!url) return;
+
+    if (document.file_type === "image" || document.file_type === "pdf") {
+      setPreviewModal({
+        isOpen: true,
+        document,
+        url,
+      });
+    } else {
+      // For other file types, trigger download
+      handleDownload(document);
     }
   };
 
@@ -178,19 +123,17 @@ export default function DocumentPreview({
     }
   };
 
-  const handlePreview = (document: Document) => {
-    const url = fileUrls[document.id];
-    if (!url) return;
+  const closeModal = () => {
+    setPreviewModal({
+      isOpen: false,
+      document: null,
+      url: "",
+    });
+  };
 
-    if (document.file_type === "image") {
-      // Open image in modal or new tab
-      window.open(url, "_blank");
-    } else if (document.file_type === "pdf") {
-      // Open PDF in new tab
-      window.open(url, "_blank");
-    } else {
-      // For other file types, trigger download
-      handleDownload(document);
+  const handleModalBackdropClick = (e: React.MouseEvent) => {
+    if (e.target === e.currentTarget) {
+      closeModal();
     }
   };
 
@@ -208,94 +151,67 @@ export default function DocumentPreview({
   }
 
   return (
-    <div className={styles.previewContainer}>
-      {showTitle && (
-        <h4 className={styles.title}>Attachments ({documents.length})</h4>
-      )}
+    <>
+      <div className={styles.attachmentsList}>
+        {documents.slice(0, maxDisplay).map((doc, index) => (
+          <span key={doc.id}>
+            <button
+              onClick={() => handleAttachmentClick(doc)}
+              className={styles.attachmentLink}
+              title={`${doc.title || doc.file_name} (${formatFileSize(
+                doc.file_size
+              )})`}
+            >
+              {getFileIcon(doc.file_type)} {doc.title || doc.file_name}
+            </button>
+            {index < Math.min(documents.length, maxDisplay) - 1 && (
+              <span className={styles.separator}>, </span>
+            )}
+          </span>
+        ))}
 
-      <div className={styles.documentsList}>
-        {documents.slice(0, maxDisplay).map((doc) => (
-          <div key={doc.id} className={styles.documentItem}>
-            <div className={styles.documentInfo}>
-              <div className={styles.fileIcon}>
-                {getFileIcon(doc.file_type, doc.mime_type)}
-              </div>
+        {documents.length > maxDisplay && (
+          <span className={styles.moreAttachments}>
+            , +{documents.length - maxDisplay} more
+          </span>
+        )}
+      </div>
 
-              <div className={styles.fileDetails}>
-                <span className={styles.fileName}>
-                  {doc.title || doc.file_name}
-                </span>
-                <span className={styles.fileSize}>
-                  {formatFileSize(doc.file_size)}
-                </span>
-              </div>
-            </div>
-
-            <div className={styles.documentActions}>
-              {doc.file_type === "image" || doc.file_type === "pdf" ? (
-                <button
-                  onClick={() => handlePreview(doc)}
-                  className={styles.previewButton}
-                  title="Preview"
-                >
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <circle
-                      cx="12"
-                      cy="12"
-                      r="3"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
-                </button>
-              ) : null}
-
+      {/* Preview Modal */}
+      {previewModal.isOpen && previewModal.document && (
+        <div className={styles.modalOverlay} onClick={handleModalBackdropClick}>
+          <div className={styles.modalContent}>
+            <div className={styles.modalHeader}>
+              <h3 className={styles.modalTitle}>
+                {previewModal.document.title || previewModal.document.file_name}
+              </h3>
               <button
-                onClick={() => handleDownload(doc)}
-                className={styles.downloadButton}
-                title="Download"
+                onClick={closeModal}
+                className={styles.modalCloseButton}
+                title="Close"
               >
                 <svg
-                  width="16"
-                  height="16"
+                  width="20"
+                  height="20"
                   viewBox="0 0 24 24"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
                 >
-                  <path
-                    d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <polyline
-                    points="7,10 12,15 17,10"
+                  <line
+                    x1="18"
+                    y1="6"
+                    x2="6"
+                    y2="18"
                     stroke="currentColor"
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
                   />
                   <line
-                    x1="12"
-                    y1="15"
-                    x2="12"
-                    y2="3"
+                    x1="6"
+                    y1="6"
+                    x2="18"
+                    y2="18"
                     stroke="currentColor"
                     strokeWidth="2"
                     strokeLinecap="round"
@@ -304,15 +220,24 @@ export default function DocumentPreview({
                 </svg>
               </button>
             </div>
+            <div className={styles.modalBody}>
+              {previewModal.document.file_type === "image" ? (
+                <img
+                  src={previewModal.url}
+                  alt={previewModal.document.file_name}
+                  className={styles.previewImage}
+                />
+              ) : previewModal.document.file_type === "pdf" ? (
+                <iframe
+                  src={previewModal.url}
+                  className={styles.previewPdf}
+                  title={previewModal.document.file_name}
+                />
+              ) : null}
+            </div>
           </div>
-        ))}
-
-        {documents.length > maxDisplay && (
-          <div className={styles.moreDocuments}>
-            +{documents.length - maxDisplay} more documents
-          </div>
-        )}
-      </div>
-    </div>
+        </div>
+      )}
+    </>
   );
 }

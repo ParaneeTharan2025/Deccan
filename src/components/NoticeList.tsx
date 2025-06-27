@@ -197,13 +197,11 @@ export default function NoticeList() {
               </div>
 
               {notice.documents && notice.documents.length > 0 && (
-                <div className={styles.noticeAttachments}>
-                  <DocumentPreview
-                    documents={notice.documents}
-                    showTitle={true}
-                    maxDisplay={3}
-                  />
-                </div>
+                <DocumentPreview
+                  documents={notice.documents}
+                  showTitle={false}
+                  maxDisplay={3}
+                />
               )}
 
               <div className={styles.noticeFooter}>

@@ -10,6 +10,14 @@ export async function POST(request: NextRequest) {
     const category = (formData.get("category") as string) || "general";
     const uploadedBy = formData.get("uploadedBy") as string;
 
+    console.log("Upload request received:", {
+      fileName: file?.name,
+      fileType: file?.type,
+      fileSize: file?.size,
+      category,
+      title,
+    });
+
     if (!file) {
       return NextResponse.json({ error: "No file provided" }, { status: 400 });
     }
@@ -27,6 +35,7 @@ export async function POST(request: NextRequest) {
     ];
 
     if (!allowedTypes.includes(file.type)) {
+      console.error("Invalid file type:", file.type);
       return NextResponse.json({ error: "Invalid file type" }, { status: 400 });
     }
 
@@ -34,15 +43,8 @@ export async function POST(request: NextRequest) {
       ? 5 * 1024 * 1024
       : 10 * 1024 * 1024; // 5MB for images, 10MB for documents
     if (file.size > maxSize) {
+      console.error("File too large:", file.size, "max:", maxSize);
       return NextResponse.json({ error: "File too large" }, { status: 400 });
-    }
-
-    // Determine file type category
-    let fileType = "document";
-    if (file.type.startsWith("image/")) {
-      fileType = "image";
-    } else if (file.type === "application/pdf") {
-      fileType = "pdf";
     }
 
     // Generate unique filename
@@ -51,11 +53,20 @@ export async function POST(request: NextRequest) {
     const uniqueFileName = `${timestamp}-${Math.random()
       .toString(36)
       .substring(2)}.${fileExtension}`;
-    const filePath = `${category}/${fileType}s/${uniqueFileName}`;
+
+    const filePath = uniqueFileName;
+
+    console.log("Generated file path:", filePath);
 
     // Convert File to ArrayBuffer then to Buffer
     const arrayBuffer = await file.arrayBuffer();
     const buffer = Buffer.from(arrayBuffer);
+
+    console.log("Starting upload to Supabase...");
+    console.log(
+      "Service role key (first 20 chars):",
+      process.env.SUPABASE_SERVICE_ROLE_KEY?.substring(0, 20)
+    );
 
     // Upload to Supabase Storage
     const { data: uploadData, error: uploadError } = await supabaseAdmin.storage
@@ -66,12 +77,21 @@ export async function POST(request: NextRequest) {
       });
 
     if (uploadError) {
-      console.error("Upload error:", uploadError);
+      console.error("Upload error details:", {
+        error: uploadError,
+        message: uploadError.message,
+        details: uploadError,
+      });
       return NextResponse.json(
-        { error: "Failed to upload file" },
+        {
+          error: "Failed to upload file",
+          details: uploadError.message,
+        },
         { status: 500 }
       );
     }
+
+    console.log("Upload successful:", uploadData);
 
     // Save document metadata to database
     const { data: document, error: dbError } = await supabaseAdmin
@@ -81,7 +101,7 @@ export async function POST(request: NextRequest) {
         description,
         file_name: file.name,
         file_path: uploadData.path,
-        file_type: fileType,
+        file_type: file.type.startsWith("image/") ? "image" : "document",
         mime_type: file.type,
         file_size: file.size,
         category,
@@ -99,6 +119,8 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
+
+    console.log("Document saved successfully:", document.id);
 
     return NextResponse.json({
       success: true,
