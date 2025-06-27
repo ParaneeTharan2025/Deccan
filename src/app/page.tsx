@@ -1,103 +1,112 @@
-import Image from "next/image";
+import styles from "@/styles/Home.module.css";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <>
+      <section className={`${styles.hero} ${styles.heroWithBg}`}>
+        <div className={styles.heroContent}>
+          <h1>Welcome to Deccan Multi State Housing Cooperative Society Ltd</h1>
+          <p>Building Communities, Creating Homes</p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+
+      <section className={styles.introduction}>
+        <div className={styles.container}>
+          <h2>Introduction</h2>
+          <p>
+            Deccan Multi State Housing Cooperative Society Ltd is a Multi State
+            Housing Cooperative Society dedicated to providing quality housing
+            solutions to our members. We believe in creating sustainable
+            communities that enhance the quality of life for all residents.
+          </p>
+          <p>
+            With years of experience in the housing sector, we have established
+            ourselves as a trusted name in community development and cooperative
+            housing.
+          </p>
+        </div>
+      </section>
+
+      <section className={styles.history}>
+        <div className={styles.container}>
+          <h2>History of the Society</h2>
+          <div className={styles.historyContent}>
+            <p>
+              Founded with a vision to revolutionize cooperative housing, Deccan
+              Multi State Housing Cooperative Society Ltd has grown from humble
+              beginnings to become a trusted name in community development. Our
+              journey is marked by:
+            </p>
+            <ul>
+              <li>Years of dedicated service in the housing sector</li>
+              <li>Successful completion of multiple housing projects</li>
+              <li>Growing community of satisfied members</li>
+              <li>Strong partnerships with industry stakeholders</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.objectives}>
+        <div className={styles.container}>
+          <h2>Main Objectives of the Society</h2>
+          <div className={styles.objectivesGrid}>
+            <div className={styles.objectiveCard}>
+              <i className="fas fa-home"></i>
+              <h3>Affordable Housing</h3>
+              <p>Provide cost-effective housing solutions to our members</p>
+            </div>
+            <div className={styles.objectiveCard}>
+              <i className="fas fa-users"></i>
+              <h3>Community Building</h3>
+              <p>Create vibrant, sustainable communities</p>
+            </div>
+            <div className={styles.objectiveCard}>
+              <i className="fas fa-shield-alt"></i>
+              <h3>Member Protection</h3>
+              <p>Ensure member interests are protected</p>
+            </div>
+            <div className={styles.objectiveCard}>
+              <i className="fas fa-handshake"></i>
+              <h3>Cooperative Growth</h3>
+              <p>Foster mutual growth and development</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.administration}>
+        <div className={styles.container}>
+          <h2>Proposed Administration</h2>
+          <div className={styles.adminStructure}>
+            <div className={styles.adminContent}>
+              <p>
+                Our administrative structure is designed to ensure efficient
+                management and transparent operations. The society is managed
+                by:
+              </p>
+              <ul>
+                <li>Board of Directors</li>
+                <li>Executive Committee</li>
+                <li>Professional Management Team</li>
+                <li>Advisory Panel</li>
+              </ul>
+            </div>
+            <div className={styles.adminHighlights}>
+              <div className={styles.highlightBox}>
+                <i className="fas fa-chart-line"></i>
+                <h3>Transparent Operations</h3>
+                <p>Clear and open management practices</p>
+              </div>
+              <div className={styles.highlightBox}>
+                <i className="fas fa-tasks"></i>
+                <h3>Efficient Management</h3>
+                <p>Professional approach to administration</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }

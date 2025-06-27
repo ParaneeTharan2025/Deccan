@@ -9,19 +9,26 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "next": "15.3.3"
+    "@chakra-ui/react": "^3.21.0",
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@supabase/supabase-js": "^2.50.2",
+    "bcryptjs": "^3.0.2",
+    "framer-motion": "^12.17.0",
+    "jsonwebtoken": "^9.0.2",
+    "next": "14.1.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "yet-another-react-lightbox": "^3.17.0"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@types/bcryptjs": "^3.0.0",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
-    "eslint": "^9",
-    "eslint-config-next": "15.3.3",
-    "@eslint/eslintrc": "^3"
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.1.0",
+    "typescript": "^5"
   }
 }

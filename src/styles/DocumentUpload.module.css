@@ -1,0 +1,143 @@
+.uploadContainer {
+  margin: 1rem 0;
+}
+
+.uploadArea {
+  border: 2px dashed #d1d5db;
+  border-radius: 8px;
+  padding: 2rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: #f9fafb;
+  position: relative;
+}
+
+.uploadArea:hover {
+  border-color: #3498db;
+  background: #f0f9ff;
+}
+
+.uploadArea.dragActive {
+  border-color: #3498db;
+  background: #dbeafe;
+  transform: scale(1.02);
+}
+
+.uploadArea.uploading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.fileInput {
+  display: none;
+}
+
+.uploadContent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.uploadIcon {
+  color: #6b7280;
+}
+
+.uploadArea:hover .uploadIcon {
+  color: #3498db;
+}
+
+.uploadText {
+  font-size: 1.1rem;
+  color: #374151;
+  margin: 0;
+}
+
+.uploadSubtext {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.uploadingState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f4f6;
+  border-top: 4px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.error {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  color: #dc2626;
+  font-size: 0.9rem;
+}
+
+.progressContainer {
+  margin-top: 1rem;
+  space-y: 0.5rem;
+}
+
+.progressItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.progressBar {
+  flex: 1;
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: #3498db;
+  transition: width 0.3s ease;
+  border-radius: 4px;
+}
+
+.progressText {
+  font-size: 0.8rem;
+  color: #6b7280;
+  min-width: 40px;
+  text-align: right;
+}
+
+@media (max-width: 640px) {
+  .uploadArea {
+    padding: 1.5rem 1rem;
+  }
+
+  .uploadText {
+    font-size: 1rem;
+  }
+
+  .uploadSubtext {
+    font-size: 0.8rem;
+  }
+}

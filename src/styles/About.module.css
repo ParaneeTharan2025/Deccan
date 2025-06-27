@@ -1,0 +1,250 @@
+.aboutPage {
+  min-height: 100vh;
+}
+
+.hero {
+  height: 100vh;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #ffffff;
+  padding-top: 80px;
+  margin-bottom: 0;
+  background-color: #666;
+}
+
+.heroWithBg {
+  background-image: url("/images/about/director-about.jpeg") !important;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 0 20px;
+  animation: fadeIn 1s ease-in;
+}
+
+.heroContent h1 {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  line-height: 1.2;
+}
+
+.heroContent p {
+  font-size: 1.8rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  margin-bottom: 2rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Section Styles */
+.boardDirectors,
+.ledgersBooks,
+.housingSchemes {
+  padding: 5rem 0;
+  background-color: #ffffff;
+}
+
+.societyFunctions,
+.landProvisions,
+.conclusion {
+  padding: 5rem 0;
+  background-color: #f5f6fa;
+}
+
+.boardDirectors h2,
+.societyFunctions h2,
+.ledgersBooks h2,
+.landProvisions h2,
+.housingSchemes h2,
+.conclusion h2 {
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+.directorsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.directorCard {
+  text-align: center;
+  background: #fff;
+  border-radius: 8px;
+  padding: 2rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.directorImage {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.directorImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.functionsList ul {
+  max-width: 800px;
+  margin: 0 auto;
+  padding-left: 2rem;
+}
+
+.functionsList li {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.ledgersGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+.ledgerItem {
+  background: #f8f9fa;
+  padding: 2rem;
+  border-radius: 8px;
+}
+
+.ledgerItem h3 {
+  margin-bottom: 1.5rem;
+  color: #3498db;
+}
+
+.ledgerItem ul {
+  padding-left: 1.5rem;
+}
+
+.ledgerItem li {
+  margin-bottom: 0.75rem;
+}
+
+.landsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.landCard {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.landCard h3 {
+  color: #3498db;
+  margin-bottom: 1rem;
+}
+
+.schemesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.schemeCard {
+  background: #fff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.schemeCard h3 {
+  color: #3498db;
+  margin-bottom: 1rem;
+}
+
+.schemeCard ul {
+  padding-left: 1.5rem;
+  margin-top: 1rem;
+}
+
+.schemeCard li {
+  margin-bottom: 0.5rem;
+}
+
+.conclusion {
+  background: #f8f9fa;
+  text-align: center;
+}
+
+.conclusion p {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .heroContent h1 {
+    font-size: 2.8rem;
+  }
+
+  .heroContent p {
+    font-size: 1.4rem;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+
+  .boardDirectors,
+  .societyFunctions,
+  .ledgersBooks,
+  .landProvisions,
+  .housingSchemes,
+  .conclusion {
+    padding: 3rem 0;
+  }
+
+  .directorImage {
+    width: 150px;
+    height: 150px;
+  }
+}

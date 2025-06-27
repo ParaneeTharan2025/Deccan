@@ -1,0 +1,209 @@
+.channelPartnerPage {
+  min-height: 100vh;
+}
+
+.hero {
+  height: 100vh;
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: #ffffff;
+  padding-top: 80px;
+  margin-bottom: 0;
+  background-color: #666;
+}
+
+.heroWithBg {
+  background-image: url("/images/partner/opp-partner.jpeg") !important;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 0 20px;
+  animation: fadeIn 1s ease-in;
+}
+
+.heroContent h1 {
+  font-size: 4rem;
+  margin-bottom: 1.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  line-height: 1.2;
+}
+
+.heroContent p {
+  font-size: 1.8rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  margin-bottom: 2rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Section Styles */
+.opportunity,
+.requirements {
+  padding: 5rem 0;
+  background-color: #ffffff;
+}
+
+.joinPartner,
+.benefits {
+  padding: 5rem 0;
+  background-color: #f5f6fa;
+}
+
+.opportunity h2,
+.joinPartner h2,
+.requirements h2,
+.benefits h2 {
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+.opportunityContent {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.opportunityHighlights {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.highlightCard {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.highlightCard:hover {
+  transform: translateY(-5px);
+}
+
+.highlightCard i {
+  font-size: 2.5rem;
+  color: #3498db;
+  margin-bottom: 1rem;
+}
+
+.requirementsList ul {
+  max-width: 600px;
+  margin: 0 auto;
+  list-style: none;
+  padding: 0;
+}
+
+.requirementsList li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.requirementsList i {
+  color: #3498db;
+  margin-right: 1rem;
+  width: 20px;
+}
+
+.benefitsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.benefitCard {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.benefitCard:hover {
+  transform: translateY(-5px);
+}
+
+.benefitCard i {
+  font-size: 2.5rem;
+  color: #3498db;
+  margin-bottom: 1rem;
+}
+
+.benefitCard h3 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .heroContent h1 {
+    font-size: 2.8rem;
+  }
+
+  .heroContent p {
+    font-size: 1.4rem;
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+
+  .opportunity,
+  .joinPartner,
+  .requirements,
+  .benefits {
+    padding: 3rem 0;
+  }
+
+  .opportunityHighlights {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .benefitsGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+}
