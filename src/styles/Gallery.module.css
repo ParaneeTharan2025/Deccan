@@ -19,7 +19,7 @@
 }
 
 .heroWithBg {
-  background-image: url("/images/gallery/grid-gallery.jpeg") !important;
+  background-image: url("/images/gallery/gallery-landing.jpeg") !important;
 }
 
 .hero::before {

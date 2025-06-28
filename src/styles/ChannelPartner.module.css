@@ -102,7 +102,7 @@
 
 .opportunityHighlights {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
   margin-top: 3rem;
 }
@@ -148,7 +148,7 @@
 
 .benefitsGrid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
   margin-top: 2rem;
 }
@@ -175,6 +175,46 @@
 .benefitCard h3 {
   color: #2c3e50;
   margin-bottom: 1rem;
+}
+
+/* Contact Details Styles */
+.contactDetails {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.contactCard {
+  background: #ffffff;
+  padding: 2.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 2px solid #3498db;
+  max-width: 600px;
+  width: 100%;
+}
+
+.contactCard h3 {
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+.contactInfo p {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  color: #2c3e50;
+  line-height: 1.6;
+}
+
+.contactInfo i {
+  color: #3498db;
+  margin-right: 1rem;
+  width: 20px;
+  font-size: 1.2rem;
 }
 
 @media (max-width: 768px) {

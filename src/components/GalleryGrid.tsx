@@ -15,40 +15,100 @@ type GalleryItem = {
 
 const galleryItems: GalleryItem[] = [
   {
-    src: '/images/gallery/residential-1.jpeg',
-    category: 'residential',
-    title: 'Residential Property 1',
-    alt: 'Residential Property 1'
+    src: '/images/gallery/grp1.jpg',
+    category: 'group',
+    title: 'Group Photo 1',
+    alt: 'Group Photo 1'
   },
   {
-    src: '/images/gallery/residential-2.jpeg',
-    category: 'residential',
-    title: 'Residential Property 2',
-    alt: 'Residential Property 2'
+    src: '/images/gallery/grp2.jpg',
+    category: 'group',
+    title: 'Group Photo 2',
+    alt: 'Group Photo 2'
   },
   {
-    src: '/images/gallery/commercial-1.jpeg',
-    category: 'commercial',
-    title: 'Commercial Property 1',
-    alt: 'Commercial Property 1'
+    src: '/images/gallery/grp3.jpg',
+    category: 'group',
+    title: 'Group Photo 3',
+    alt: 'Group Photo 3'
   },
   {
-    src: '/images/gallery/commercial-2.jpeg',
-    category: 'commercial',
-    title: 'Commercial Property 2',
-    alt: 'Commercial Property 2'
+    src: '/images/gallery/grp4.jpg',
+    category: 'group',
+    title: 'Group Photo 4',
+    alt: 'Group Photo 4'
   },
   {
-    src: '/images/gallery/amenity-1.jpeg',
-    category: 'amenities',
-    title: 'Amenity 1',
-    alt: 'Amenity 1'
+    src: '/images/gallery/grp5.jpg',
+    category: 'group',
+    title: 'Group Photo 5',
+    alt: 'Group Photo 5'
   },
   {
-    src: '/images/gallery/amenity-2.jpeg',
-    category: 'amenities',
-    title: 'Amenity 2',
-    alt: 'Amenity 2'
+    src: '/images/gallery/grp6.jpg',
+    category: 'group',
+    title: 'Group Photo 6',
+    alt: 'Group Photo 6'
+  },
+  {
+    src: '/images/gallery/grp7.jpg',
+    category: 'group',
+    title: 'Group Photo 7',
+    alt: 'Group Photo 7'
+  },
+  {
+    src: '/images/gallery/grp8.jpg',
+    category: 'group',
+    title: 'Group Photo 8',
+    alt: 'Group Photo 8'
+  },
+  {
+    src: '/images/gallery/grp9.jpg',
+    category: 'group',
+    title: 'Group Photo 9',
+    alt: 'Group Photo 9'
+  },
+  {
+    src: '/images/gallery/grp10.jpg',
+    category: 'group',
+    title: 'Group Photo 10',
+    alt: 'Group Photo 10'
+  },
+  {
+    src: '/images/gallery/grp11.jpg',
+    category: 'group',
+    title: 'Group Photo 11',
+    alt: 'Group Photo 11'
+  },
+  {
+    src: '/images/gallery/grp12.jpg',
+    category: 'group',
+    title: 'Group Photo 12',
+    alt: 'Group Photo 12'
+  },
+  {
+    src: '/images/gallery/grp13.jpg',
+    category: 'group',
+    title: 'Group Photo 13',
+    alt: 'Group Photo 13'
+  },
+  {
+    src: '/images/gallery/grp14.jpg',
+    category: 'group',
+    title: 'Group Photo 14',
+    alt: 'Group Photo 14'
+  },
+  {
+    src: '/images/gallery/grp15.jpg',
+    category: 'group',
+    title: 'Group Photo 15',
+    alt: 'Group Photo 15'
+  },
+  {
+    src: '/images/gallery/grp16.jpg',
+    category: 'group',
+    title: 'Group Photo 16',
+    alt: 'Group Photo 16'
   },
   {
     src: '/images/gallery/event-1.jpeg',
@@ -65,17 +125,8 @@ const galleryItems: GalleryItem[] = [
 ];
 
 export default function GalleryGrid() {
-  const [activeFilter, setActiveFilter] = useState('all');
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [lightboxIndex, setLightboxIndex] = useState(0);
-
-  const filteredItems = activeFilter === 'all'
-    ? galleryItems
-    : galleryItems.filter(item => item.category === activeFilter);
-
-  const handleFilterClick = (filter: string) => {
-    setActiveFilter(filter);
-  };
 
   const openLightbox = (index: number) => {
     setLightboxIndex(index);
@@ -84,47 +135,10 @@ export default function GalleryGrid() {
 
   return (
     <>
-      <section className={styles.galleryFilters}>
-        <div className={styles.container}>
-          <div className={styles.filterButtons}>
-            <button 
-              className={`${styles.filterBtn} ${activeFilter === 'all' ? styles.active : ''}`}
-              onClick={() => handleFilterClick('all')}
-            >
-              All
-            </button>
-            <button 
-              className={`${styles.filterBtn} ${activeFilter === 'residential' ? styles.active : ''}`}
-              onClick={() => handleFilterClick('residential')}
-            >
-              Residential
-            </button>
-            <button 
-              className={`${styles.filterBtn} ${activeFilter === 'commercial' ? styles.active : ''}`}
-              onClick={() => handleFilterClick('commercial')}
-            >
-              Commercial
-            </button>
-            <button 
-              className={`${styles.filterBtn} ${activeFilter === 'amenities' ? styles.active : ''}`}
-              onClick={() => handleFilterClick('amenities')}
-            >
-              Amenities
-            </button>
-            <button 
-              className={`${styles.filterBtn} ${activeFilter === 'events' ? styles.active : ''}`}
-              onClick={() => handleFilterClick('events')}
-            >
-              Events
-            </button>
-          </div>
-        </div>
-      </section>
-
       <section className={styles.galleryGrid}>
         <div className={styles.container}>
           <div className={styles.imageGrid}>
-            {filteredItems.map((item, index) => (
+            {galleryItems.map((item, index) => (
               <div 
                 key={item.src}
                 className={`${styles.galleryItem} ${styles[item.category]}`}

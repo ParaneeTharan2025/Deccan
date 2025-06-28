@@ -1,4 +1,6 @@
 /* Reset and Base Styles */
+@import url('https://fonts.googleapis.com/css2?family=Stencil&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -15,9 +17,15 @@
 }
 
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: 'Sylfaen', serif;
   line-height: 1.6;
   color: var(--text-color);
+}
+
+/* Stencil font for all headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Stencil', cursive;
+  font-weight: normal;
 }
 
 .container {

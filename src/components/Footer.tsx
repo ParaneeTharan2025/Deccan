@@ -7,9 +7,9 @@ export default function Footer() {
       <div className={styles.container}>
         <div className={styles.contactInfo}>
           <h3>Contact Us</h3>
-          <p><i className="fas fa-phone"></i> Phone: +91 XXXXXXXXXX</p>
-          <p><i className="fas fa-envelope"></i> Email: info@deccanmonogram.com</p>
-          <p><i className="fas fa-map-marker-alt"></i> Address: [Your Society Address]</p>
+          <p><i className="fas fa-phone"></i> Phone: +91 9442220276, +91 9940023395</p>
+          <p><i className="fas fa-envelope"></i> Email: deccanmultistatehousingsociety@gmail.com</p>
+          <p><i className="fas fa-map-marker-alt"></i> Address: 904, Soundarya colony 6th Avenue, Anna nagar west extension, Chennai - 600101</p>
         </div>
         <div className={styles.footerLinks}>
           <h3>Quick Links</h3>

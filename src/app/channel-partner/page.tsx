@@ -47,36 +47,18 @@ export default function ChannelPartner() {
         </div>
       </section>
 
-      <section className={styles.joinPartner}>
-        <div className={styles.container}>
-          <h2>Join as a Channel Partner</h2>
-          <PartnerForm />
-        </div>
-      </section>
-
       <section className={styles.requirements}>
         <div className={styles.container}>
-          <h2>Requirements</h2>
-          <div className={styles.requirementsList}>
-            <ul>
-              <li>
-                <i className="fas fa-check"></i> Minimum 2 years of real estate
-                experience
-              </li>
-              <li>
-                <i className="fas fa-check"></i> Valid real estate license
-              </li>
-              <li>
-                <i className="fas fa-check"></i> Strong communication skills
-              </li>
-              <li>
-                <i className="fas fa-check"></i> Professional approach to
-                business
-              </li>
-              <li>
-                <i className="fas fa-check"></i> Commitment to ethical practices
-              </li>
-            </ul>
+          <h2>To Join as a Partner</h2>
+          <div className={styles.contactDetails}>
+            <div className={styles.contactCard}>
+              <h3>Contact Details</h3>
+              <div className={styles.contactInfo}>
+                <p><i className="fas fa-phone"></i> Phone: +91 9442220276, +91 9940023395</p>
+                <p><i className="fas fa-envelope"></i> Email: deccanmultistatehousingsociety@gmail.com</p>
+                <p><i className="fas fa-map-marker-alt"></i> Address: 904, Soundarya colony 6th Avenue, Anna nagar west extension, Chennai - 600101</p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

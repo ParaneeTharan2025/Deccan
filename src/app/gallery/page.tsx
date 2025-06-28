@@ -11,31 +11,6 @@ export default function Gallery() {
         </div>
       </section>
 
-      <section className={styles.galleryFilters}>
-        <div className={styles.container}>
-          <div className={styles.filterButtons}>
-            <button
-              className={`${styles.filterBtn} ${styles.active}`}
-              data-filter="all"
-            >
-              All
-            </button>
-            <button className={styles.filterBtn} data-filter="residential">
-              Residential
-            </button>
-            <button className={styles.filterBtn} data-filter="commercial">
-              Commercial
-            </button>
-            <button className={styles.filterBtn} data-filter="amenities">
-              Amenities
-            </button>
-            <button className={styles.filterBtn} data-filter="events">
-              Events
-            </button>
-          </div>
-        </div>
-      </section>
-
       <GalleryGrid />
     </div>
   );

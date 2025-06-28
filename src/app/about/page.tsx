@@ -14,19 +14,131 @@ export default function About() {
       <section className={styles.boardDirectors}>
         <div className={styles.container}>
           <h2>Board of Directors</h2>
-          <div className={styles.directorsGrid}>
-            <div className={styles.directorCard}>
-              <div className={styles.directorImage}>
-                <Image
-                  src="/images/placeholder.jpg"
-                  alt="Director Name"
-                  width={200}
-                  height={200}
-                />
+          
+          <div className={styles.boardStructure}>
+            {/* Chairman Section */}
+            <div className={styles.chairmanSection}>
+              <div className={styles.chairmanCard}>
+                <div className={styles.chairmanImage}>
+                  <Image
+                    src="/images/gallery/chariman.jpg"
+                    alt="Chairman"
+                    width={200}
+                    height={200}
+                  />
+                </div>
+                <h4>Dr. K. Indira</h4>
+                <p>Chairman</p>
               </div>
-              <h3>Director Name</h3>
-              <p>Position</p>
             </div>
+
+            {/* Connecting Line */}
+            <div className={styles.connectingLine}>
+              <div className={styles.verticalLine}></div>
+              <div className={styles.horizontalLine}></div>
+            </div>
+
+            {/* Directors Section - Single Line */}
+            <div className={styles.directorsSection}>
+              <div className={styles.directorsRow}>
+                <div className={styles.directorCard}>
+                  <div className={styles.directorImage}>
+                    <Image
+                      src="/images/gallery/director1.jpg"
+                      alt="Director 1"
+                      width={120}
+                      height={120}
+                    />
+                  </div>
+                  <h4>M.D. Nandakumar</h4>
+                  <p>Director</p>
+                </div>
+                
+                <div className={styles.directorCard}>
+                  <div className={styles.directorImage}>
+                    <Image
+                      src="/images/gallery/director2.jpg"
+                      alt="Director 2"
+                      width={120}
+                      height={120}
+                    />
+                  </div>
+                  <h4>Dr. Vijaya Bhaskar Raju</h4>
+                  <p>Director</p>
+                </div>
+                
+                <div className={styles.directorCard}>
+                  <div className={styles.directorImage}>
+                    <Image
+                      src="/images/gallery/director3.jpg"
+                      alt="Director 3"
+                      width={120}
+                      height={120}
+                    />
+                  </div>
+                  <h4>P. Murugan</h4>
+                  <p>Director</p>
+                </div>
+                
+                <div className={styles.directorCard}>
+                  <div className={styles.directorImage}>
+                    <Image
+                      src="/images/gallery/director4.jpg"
+                      alt="Director 4"
+                      width={120}
+                      height={120}
+                    />
+                  </div>
+                  <h4>S. Jayarani Yuvaraj</h4>
+                  <p>Director</p>
+                </div>
+                
+                <div className={styles.directorCard}>
+                  <div className={styles.directorImage}>
+                    <Image
+                      src="/images/gallery/director5.jpg"
+                      alt="Director 5"
+                      width={120}
+                      height={120}
+                    />
+                  </div>
+                  <h4>MG. Diwakar</h4>
+                  <p>Director</p>
+                </div>
+                
+                <div className={styles.directorCard}>
+                  <div className={styles.directorImage}>
+                    <Image
+                      src="/images/gallery/director6.jpg"
+                      alt="Director 6"
+                      width={120}
+                      height={120}
+                    />
+                  </div>
+                  <h4>T Rajapandiyan</h4>
+                  <p>Director</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Administrator Section */}
+      <section className={styles.administratorSection}>
+        <div className={styles.container}>
+          <h2>Administrator</h2>
+          <div className={styles.administratorCard}>
+            <div className={styles.administratorImage}>
+              <Image
+                src="/images/gallery/admin.jpg"
+                alt="Administrator"
+                width={180}
+                height={180}
+              />
+            </div>
+            <h3>J. Paranee Tharan</h3>
+            <p>Administrator</p>
           </div>
         </div>
       </section>
@@ -37,7 +149,7 @@ export default function About() {
           <div className={styles.functionsList}>
             <ul>
               <li>Provide affordable housing solutions to members</li>
-              <li>Maintain and manage society properties</li>
+              <li>Sale of Plots</li>
               <li>Facilitate community development</li>
               <li>Ensure compliance with cooperative society regulations</li>
               <li>Manage member relations and grievances</li>
@@ -78,11 +190,9 @@ export default function About() {
           <div className={styles.landsGrid}>
             <div className={styles.landCard}>
               <h3>Residential Plots</h3>
-              <p>Details about residential plot schemes and locations</p>
             </div>
             <div className={styles.landCard}>
               <h3>Commercial Plots</h3>
-              <p>Information about commercial land development</p>
             </div>
           </div>
         </div>
@@ -93,13 +203,38 @@ export default function About() {
           <h2>Proposed Housing Schemes</h2>
           <div className={styles.schemesGrid}>
             <div className={styles.schemeCard}>
-              <h3>Scheme Name</h3>
-              <p>Description of the housing scheme</p>
-              <ul>
-                <li>Location details</li>
-                <li>Plot sizes available</li>
-                <li>Amenities provided</li>
-              </ul>
+              <h3>MANJAMBAKKAM</h3>
+              <p className={styles.address}>
+                Near Madhavaram
+              </p>
+            </div>
+            
+            <div className={styles.schemeCard}>
+              <h3>THEEYAMBAKKAM</h3>
+              <p className={styles.address}>
+                Near Madhavaram
+              </p>
+            </div>
+            
+            <div className={styles.schemeCard}>
+              <h3>SEWAPET</h3>
+              <p className={styles.address}>
+                Near Kalyana Kuppam, Thiruvallur District
+              </p>
+            </div>
+            
+            <div className={styles.schemeCard}>
+              <h3>KILANUR</h3>
+              <p className={styles.address}>
+                Near Veera Raghava Puram, Thiruvallur District
+              </p>
+            </div>
+            
+            <div className={styles.schemeCard}>
+              <h3>KOLATHUR</h3>
+              <p className={styles.address}>
+                Near Thoothukudi
+              </p>
             </div>
           </div>
         </div>

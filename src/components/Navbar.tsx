@@ -3,13 +3,22 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import styles from '@/styles/Navbar.module.css';
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const isActive = (path: string) => {
+    if (path === '/') {
+      return pathname === '/';
+    }
+    return pathname.startsWith(path);
   };
 
   return (
@@ -28,12 +37,12 @@ export default function Navbar() {
           <h1>Deccan Multi State Housing Cooperative Society Ltd</h1>
         </div>
         <ul className={`${styles.navLinks} ${isMenuOpen ? styles.active : ''}`}>
-          <li><Link href="/" className={styles.active}>Home</Link></li>
-          <li><Link href="/about">About</Link></li>
-          <li><Link href="/channel-partner">Channel Partner</Link></li>
-          <li><Link href="/assistance">Assistance</Link></li>
-          <li><Link href="/gallery">Gallery</Link></li>
-          <li><Link href="/notification">Notification</Link></li>
+          <li><Link href="/" className={isActive('/') ? styles.active : ''}>Home</Link></li>
+          <li><Link href="/about" className={isActive('/about') ? styles.active : ''}>About</Link></li>
+          <li><Link href="/channel-partner" className={isActive('/channel-partner') ? styles.active : ''}>Channel Partner</Link></li>
+          <li><Link href="/assistance" className={isActive('/assistance') ? styles.active : ''}>Assistance</Link></li>
+          <li><Link href="/gallery" className={isActive('/gallery') ? styles.active : ''}>Gallery</Link></li>
+          <li><Link href="/notification" className={isActive('/notification') ? styles.active : ''}>Notification</Link></li>
         </ul>
         <div 
           className={`${styles.hamburger} ${isMenuOpen ? styles.active : ''}`}

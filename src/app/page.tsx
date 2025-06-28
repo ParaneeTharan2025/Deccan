@@ -6,7 +6,7 @@ export default function Home() {
       <section className={`${styles.hero} ${styles.heroWithBg}`}>
         <div className={styles.heroContent}>
           <h1>Welcome to Deccan Multi State Housing Cooperative Society Ltd</h1>
-          <p>Building Communities, Creating Homes</p>
+          <p>Building Communities, Creating Homes, Sale of plots</p>
         </div>
       </section>
 
@@ -20,9 +20,11 @@ export default function Home() {
             communities that enhance the quality of life for all residents.
           </p>
           <p>
-            With years of experience in the housing sector, we have established
+            We have established
             ourselves as a trusted name in community development and cooperative
-            housing.
+            housing. Our Society ambition is giving house to all. To promote 
+            residential zones in the form of plots with proper approval from the authorities.
+            
           </p>
         </div>
       </section>
@@ -38,8 +40,7 @@ export default function Home() {
               journey is marked by:
             </p>
             <ul>
-              <li>Years of dedicated service in the housing sector</li>
-              <li>Successful completion of multiple housing projects</li>
+              <li>Dedicated service in the housing sector</li>
               <li>Growing community of satisfied members</li>
               <li>Strong partnerships with industry stakeholders</li>
             </ul>
@@ -68,7 +69,7 @@ export default function Home() {
             </div>
             <div className={styles.objectiveCard}>
               <i className="fas fa-handshake"></i>
-              <h3>Cooperative Growth</h3>
+              <h3>Sale of plots</h3>
               <p>Foster mutual growth and development</p>
             </div>
           </div>
@@ -102,6 +103,31 @@ export default function Home() {
                 <i className="fas fa-tasks"></i>
                 <h3>Efficient Management</h3>
                 <p>Professional approach to administration</p>
+              </div>
+            </div>
+          </div>
+          
+          <div className={styles.branchLocations}>
+            <h3>Branch Locations</h3>
+            <p>Our society operates branches across two states to serve our members effectively:</p>
+            
+            <div className={styles.statesGrid}>
+              <div className={styles.stateCard}>
+                <h4>Andhra Pradesh</h4>
+                <ul>
+                  <li>Gudiwada</li>
+                  <li>Vijayawada</li>
+                  <li>Gudur</li>
+                </ul>
+              </div>
+              
+              <div className={styles.stateCard}>
+                <h4>Tamil Nadu</h4>
+                <ul>
+                  <li>Chennai</li>
+                  <li>Thiruvallur</li>
+                  <li>Thanjavur</li>
+                </ul>
               </div>
             </div>
           </div>

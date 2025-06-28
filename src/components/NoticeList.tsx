@@ -29,9 +29,6 @@ interface Notice {
 export default function NoticeList() {
   const [notices, setNotices] = useState<Notice[]>([]);
   const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState<
-    "all" | "general" | "important" | "events"
-  >("all");
   const [currentPage, setCurrentPage] = useState(1);
   const noticesPerPage = 5;
 
@@ -87,14 +84,10 @@ export default function NoticeList() {
     }
   };
 
-  const filteredNotices = notices.filter(
-    (notice) => filter === "all" || notice.category === filter
-  );
-
-  const totalPages = Math.ceil(filteredNotices.length / noticesPerPage);
+  const totalPages = Math.ceil(notices.length / noticesPerPage);
   const startIndex = (currentPage - 1) * noticesPerPage;
   const endIndex = startIndex + noticesPerPage;
-  const currentNotices = filteredNotices.slice(startIndex, endIndex);
+  const currentNotices = notices.slice(startIndex, endIndex);
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("en-US", {
@@ -127,57 +120,10 @@ export default function NoticeList() {
 
   return (
     <div className={styles.noticeBoard}>
-      <div className={styles.noticeFilters}>
-        <button
-          className={`${styles.filterBtn} ${
-            filter === "all" ? styles.active : ""
-          }`}
-          onClick={() => {
-            setFilter("all");
-            setCurrentPage(1);
-          }}
-        >
-          All Notices
-        </button>
-        <button
-          className={`${styles.filterBtn} ${
-            filter === "general" ? styles.active : ""
-          }`}
-          onClick={() => {
-            setFilter("general");
-            setCurrentPage(1);
-          }}
-        >
-          General
-        </button>
-        <button
-          className={`${styles.filterBtn} ${
-            filter === "important" ? styles.active : ""
-          }`}
-          onClick={() => {
-            setFilter("important");
-            setCurrentPage(1);
-          }}
-        >
-          Important
-        </button>
-        <button
-          className={`${styles.filterBtn} ${
-            filter === "events" ? styles.active : ""
-          }`}
-          onClick={() => {
-            setFilter("events");
-            setCurrentPage(1);
-          }}
-        >
-          Events
-        </button>
-      </div>
-
       <div className={styles.noticeList}>
         {currentNotices.length === 0 ? (
           <div className={styles.noNotices}>
-            <p>No notices found for the selected category.</p>
+            <p>No notices found.</p>
           </div>
         ) : (
           currentNotices.map((notice) => (
@@ -199,20 +145,9 @@ export default function NoticeList() {
               {notice.documents && notice.documents.length > 0 && (
                 <DocumentPreview
                   documents={notice.documents}
-                  showTitle={false}
-                  maxDisplay={3}
+                  noticeId={notice.id}
                 />
               )}
-
-              <div className={styles.noticeFooter}>
-                <span className={styles.noticeCategory}>{notice.category}</span>
-                {notice.documents && notice.documents.length > 0 && (
-                  <span className={styles.attachmentCount}>
-                    📎 {notice.documents.length} attachment
-                    {notice.documents.length > 1 ? "s" : ""}
-                  </span>
-                )}
-              </div>
             </div>
           ))
         )}
@@ -221,21 +156,21 @@ export default function NoticeList() {
       {totalPages > 1 && (
         <div className={styles.pagination}>
           <button
-            className={styles.pageBtn}
             onClick={handlePrevPage}
             disabled={currentPage === 1}
+            className={styles.pageBtn}
           >
-            <i className="fas fa-chevron-left"></i>
+            Previous
           </button>
           <span className={styles.pageInfo}>
             Page {currentPage} of {totalPages}
           </span>
           <button
-            className={styles.pageBtn}
             onClick={handleNextPage}
             disabled={currentPage === totalPages}
+            className={styles.pageBtn}
           >
-            <i className="fas fa-chevron-right"></i>
+            Next
           </button>
         </div>
       )}

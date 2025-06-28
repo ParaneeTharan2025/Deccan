@@ -19,7 +19,7 @@
 }
 
 .heroWithBg {
-  background-image: url("/images/notification/notice-notification.jpeg") !important;
+  background-image: url("/images/about/book-about.jpeg") !important;
 }
 
 .hero::before {

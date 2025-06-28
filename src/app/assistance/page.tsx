@@ -59,21 +59,21 @@ export default function Assistance() {
                 <i className="fas fa-map-marker-alt"></i>
                 <div>
                   <h3>Address</h3>
-                  <p>[Your Society Address]</p>
+                  <p>904, Soundarya colony 6th Avenue, Anna nagar west extension, Chennai - 600101</p>
                 </div>
               </div>
               <div className={styles.infoItem}>
                 <i className="fas fa-phone"></i>
                 <div>
                   <h3>Phone</h3>
-                  <p>+91 XXXXXXXXXX</p>
+                  <p>+91 9442220276, +91 9940023395</p>
                 </div>
               </div>
               <div className={styles.infoItem}>
                 <i className="fas fa-envelope"></i>
                 <div>
                   <h3>Email</h3>
-                  <p>info@deccanmonogram.com</p>
+                  <p>deccanmultistatehousingsociety@gmail.com</p>
                 </div>
               </div>
               <div className={styles.infoItem}>
@@ -92,8 +92,12 @@ export default function Assistance() {
       <section className={styles.mapSection}>
         <div className={styles.container}>
           <h2>Our Location</h2>
-          <div className={styles.googleMap}>
-            <Map />
+          <div className={styles.locationMap}>
+            <img 
+              src="/images/assistance/location-map.png" 
+              alt="Our Location Map"
+              className={styles.mapImage}
+            />
           </div>
         </div>
       </section>

@@ -168,6 +168,80 @@
   margin-bottom: 0.5rem;
 }
 
+/* Branch Locations Styles */
+.branchLocations {
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 2px solid #e9ecef;
+}
+
+.branchLocations h3 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 2rem;
+}
+
+.branchLocations > p {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #6c757d;
+  font-size: 1.1rem;
+}
+
+.statesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.stateCard {
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.stateCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.stateCard h4 {
+  color: #2c3e50;
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 0.5rem;
+}
+
+.stateCard ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 0.5rem;
+}
+
+.stateCard li {
+  background-color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  color: #495057;
+  border-left: 3px solid #3498db;
+  transition: background-color 0.2s ease;
+}
+
+.stateCard li:hover {
+  background-color: #e3f2fd;
+  color: #1976d2;
+}
+
 @media (max-width: 768px) {
   .heroContent h1 {
     font-size: 2.8rem;
@@ -190,5 +264,18 @@
   .objectives,
   .administration {
     padding: 3rem 0;
+  }
+
+  .statesGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .stateCard ul {
+    grid-template-columns: 1fr;
+  }
+
+  .branchLocations {
+    margin-top: 2rem;
+    padding-top: 2rem;
   }
 }

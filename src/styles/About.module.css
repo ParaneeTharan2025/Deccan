@@ -98,33 +98,148 @@
   font-size: 2.5rem;
 }
 
-.directorsGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2rem;
-  margin-top: 2rem;
+/* Board Structure Styles */
+.boardStructure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+/* Chairman Section Styles */
+.chairmanSection {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.chairmanCard {
+  display: inline-block;
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 3px solid #3498db;
+}
+
+.chairmanCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.chairmanImage {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #3498db;
+}
+
+.chairmanImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.chairmanCard h4 {
+  font-size: 1.5rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.chairmanCard p {
+  color: #3498db;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+/* Connecting Lines */
+.connectingLine {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  margin-bottom: 2rem;
+}
+
+.verticalLine {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 3px;
+  height: 40px;
+  background: linear-gradient(to bottom, #3498db, #2980b9);
+  transform: translateX(-50%);
+}
+
+.horizontalLine {
+  position: absolute;
+  left: 0;
+  top: 40px;
+  width: 100%;
+  height: 3px;
+  background: linear-gradient(to right, #3498db, #2980b9);
+}
+
+/* Directors Section Styles */
+.directorsSection {
+  width: 100%;
+}
+
+.directorsRow {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0 1rem;
 }
 
 .directorCard {
   text-align: center;
   background: #fff;
   border-radius: 8px;
-  padding: 2rem;
+  padding: 1.5rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  min-width: 140px;
+  flex: 1;
+  max-width: 160px;
+}
+
+.directorCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .directorImage {
-  width: 200px;
-  height: 200px;
+  width: 120px;
+  height: 120px;
   margin: 0 auto 1rem;
   border-radius: 50%;
   overflow: hidden;
+  border: 3px solid #e9ecef;
 }
 
 .directorImage img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center top;
+}
+
+.directorCard h4 {
+  font-size: 1rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+  line-height: 1.2;
+}
+
+.directorCard p {
+  color: #6c757d;
+  font-weight: 500;
+  font-size: 0.9rem;
 }
 
 .functionsList ul {
@@ -202,6 +317,14 @@
   margin-bottom: 1rem;
 }
 
+.schemeCard .address {
+  color: #2c3e50;
+  line-height: 1.6;
+  font-size: 1rem;
+  margin: 0;
+  padding: 0.5rem 0;
+}
+
 .schemeCard ul {
   padding-left: 1.5rem;
   margin-top: 1rem;
@@ -219,6 +342,63 @@
 .conclusion p {
   max-width: 800px;
   margin: 0 auto;
+}
+
+/* Administrator Section Styles */
+.administratorSection {
+  padding: 4rem 0;
+  background-color: #f8f9fa;
+  text-align: center;
+}
+
+.administratorSection h2 {
+  color: #2c3e50;
+  margin-bottom: 2rem;
+  text-align: center;
+  font-size: 2.5rem;
+}
+
+.administratorCard {
+  display: inline-block;
+  background: #fff;
+  border-radius: 12px;
+  padding: 2.5rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 3px solid #28a745;
+}
+
+.administratorCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.administratorImage {
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #28a745;
+}
+
+.administratorImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 10% center;
+}
+
+.administratorCard h3 {
+  font-size: 1.4rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.administratorCard p {
+  color: #28a745;
+  font-weight: 600;
+  font-size: 1.1rem;
 }
 
 @media (max-width: 768px) {
@@ -246,5 +426,68 @@
   .directorImage {
     width: 150px;
     height: 150px;
+  }
+
+  .chairmanImage {
+    width: 200px;
+    height: 200px;
+  }
+
+  .chairmanCard {
+    padding: 2rem;
+  }
+
+  .chairmanCard h4 {
+    font-size: 1.3rem;
+  }
+
+  .directorsRow {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .directorCard {
+    min-width: 200px;
+    max-width: 250px;
+    padding: 1.5rem;
+  }
+
+  .directorImage {
+    width: 100px;
+    height: 100px;
+  }
+
+  .directorCard h4 {
+    font-size: 1.1rem;
+  }
+
+  .connectingLine {
+    height: 40px;
+  }
+
+  .verticalLine {
+    height: 30px;
+  }
+
+  .horizontalLine {
+    top: 30px;
+  }
+
+  .administratorSection {
+    padding: 3rem 0;
+  }
+
+  .administratorImage {
+    width: 150px;
+    height: 150px;
+  }
+
+  .administratorCard {
+    padding: 2rem;
+  }
+
+  .administratorCard h3 {
+    font-size: 1.3rem;
   }
 }
