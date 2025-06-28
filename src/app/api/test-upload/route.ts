@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabaseAdmin } from "@/lib/supabase";
+import { createAdminClient } from "@/lib/supabase";
 
 export async function POST(request: NextRequest) {
   try {
@@ -10,6 +10,9 @@ export async function POST(request: NextRequest) {
     const testFileName = `test-${Date.now()}.txt`;
 
     console.log("Attempting to upload test file:", testFileName);
+
+    // Create admin client
+    const supabaseAdmin = createAdminClient();
 
     // Upload to Supabase Storage
     const { data: uploadData, error: uploadError } = await supabaseAdmin.storage

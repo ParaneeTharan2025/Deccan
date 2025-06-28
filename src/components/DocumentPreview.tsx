@@ -242,7 +242,6 @@ export default function DocumentPreview({
                         url,
                         filePath: doc.file_path,
                       });
-                      // Show fallback
                       (e.target as HTMLImageElement).style.display = "none";
                       const fallback = (e.target as HTMLImageElement)
                         .nextElementSibling as HTMLElement;
@@ -290,7 +289,6 @@ export default function DocumentPreview({
           );
         })}
 
-        {/* Keep the existing modal for full-size preview */}
         {previewModal.isOpen && previewModal.document && (
           <div
             className={styles.modalOverlay}

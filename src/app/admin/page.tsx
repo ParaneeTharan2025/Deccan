@@ -151,10 +151,6 @@ export default function AdminLogin() {
               {loading ? "Logging in..." : "Login"}
             </button>
           </form>
-
-          <div className={styles.credentials}>
-            <small>Default credentials: admin / admin123</small>
-          </div>
         </div>
       </div>
     </div>
