@@ -145,7 +145,6 @@ export default function NoticeList() {
               {notice.documents && notice.documents.length > 0 && (
                 <DocumentPreview
                   documents={notice.documents}
-                  noticeId={notice.id}
                 />
               )}
             </div>
