@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabaseAdmin } from "@/lib/supabase";
+import { createAdminClient } from "@/lib/supabase";
 import * as jwt from "jsonwebtoken";
 
 const JWT_SECRET =
@@ -31,6 +31,9 @@ export async function PUT(
 
   try {
     const { title, content, category, is_published } = await request.json();
+
+    // Create admin client
+    const supabaseAdmin = createAdminClient();
 
     const { data, error } = await supabaseAdmin
       .from("notifications")
@@ -67,6 +70,9 @@ export async function DELETE(
 
   try {
     const notificationId = params.id;
+
+    // Create admin client
+    const supabaseAdmin = createAdminClient();
 
     // Get associated documents before deletion
     const { data: documentRelations, error: docRelError } = await supabaseAdmin

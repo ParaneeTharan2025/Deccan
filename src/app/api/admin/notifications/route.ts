@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { supabase, supabaseAdmin } from "@/lib/supabase";
+import { supabase, createAdminClient } from "@/lib/supabase";
 import * as jwt from "jsonwebtoken";
 
 const JWT_SECRET =

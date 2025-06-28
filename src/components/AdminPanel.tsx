@@ -40,6 +40,14 @@ export default function AdminPanel() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [activeTab, setActiveTab] = useState<"create" | "list">("create");
+  const [editingNotification, setEditingNotification] =
+    useState<Notification | null>(null);
+  const [editData, setEditData] = useState({
+    title: "",
+    content: "",
+    category: "general",
+    is_published: true,
+  });
 
   useEffect(() => {
     if (activeTab === "list") {
@@ -105,6 +113,7 @@ export default function AdminPanel() {
           is_published: true,
         });
         setAttachedDocuments([]);
+        setEditingNotification(null); // Clear any edit state
 
         alert("Notification created successfully!");
       } else {
@@ -151,6 +160,122 @@ export default function AdminPanel() {
     }
   };
 
+  const handleEditNotification = (notification: Notification) => {
+    setEditingNotification(notification);
+    setEditData({
+      title: notification.title,
+      content: notification.content,
+      category: notification.category,
+      is_published: notification.is_published,
+    });
+    setActiveTab("create"); // Switch to form tab
+  };
+
+  const handlePublishNotification = async (notificationId: string) => {
+    try {
+      const token = localStorage.getItem("adminToken");
+      if (!token) return;
+
+      const notification = notifications.find((n) => n.id === notificationId);
+      if (!notification) return;
+
+      const response = await fetch(
+        `/api/admin/notifications/${notificationId}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({
+            title: notification.title,
+            content: notification.content,
+            category: notification.category,
+            is_published: true,
+          }),
+        }
+      );
+
+      if (response.ok) {
+        const updatedNotification = await response.json();
+        setNotifications((prev) =>
+          prev.map((n) =>
+            n.id === notificationId ? { ...n, ...updatedNotification } : n
+          )
+        );
+      }
+    } catch (error) {
+      console.error("Error publishing notification:", error);
+    }
+  };
+
+  const handleUpdateNotification = async (e: FormEvent) => {
+    e.preventDefault();
+    if (!editingNotification) return;
+
+    setLoading(true);
+    setError("");
+
+    try {
+      const token = localStorage.getItem("adminToken");
+      if (!token) {
+        setError("Authentication required");
+        return;
+      }
+
+      const response = await fetch(
+        `/api/admin/notifications/${editingNotification.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify(editData),
+        }
+      );
+
+      if (response.ok) {
+        const updatedNotification = await response.json();
+        setNotifications((prev) =>
+          prev.map((n) =>
+            n.id === editingNotification.id
+              ? { ...n, ...updatedNotification }
+              : n
+          )
+        );
+
+        // Reset edit state
+        setEditingNotification(null);
+        setEditData({
+          title: "",
+          content: "",
+          category: "general",
+          is_published: true,
+        });
+
+        alert("Notification updated successfully!");
+      } else {
+        const errorData = await response.json();
+        setError(errorData.error || "Failed to update notification");
+      }
+    } catch (error) {
+      setError("Network error. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const cancelEdit = () => {
+    setEditingNotification(null);
+    setEditData({
+      title: "",
+      content: "",
+      category: "general",
+      is_published: true,
+    });
+  };
+
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("en-US", {
       year: "numeric",
@@ -164,45 +289,78 @@ export default function AdminPanel() {
   return (
     <div className={styles.adminPanel}>
       <div className={styles.header}>
-        <h2>Admin Panel</h2>
-        <div className={styles.tabs}>
-          <button
-            className={`${styles.tab} ${
-              activeTab === "create" ? styles.active : ""
-            }`}
-            onClick={() => setActiveTab("create")}
-          >
-            Create Notification
-          </button>
-          <button
-            className={`${styles.tab} ${
-              activeTab === "list" ? styles.active : ""
-            }`}
-            onClick={() => setActiveTab("list")}
-          >
-            All Notifications
-          </button>
-        </div>
+        <h1>Admin Panel</h1>
+      </div>
+
+      <div className={styles.tabs}>
+        <button
+          onClick={() => setActiveTab("create")}
+          className={`${styles.tab} ${
+            activeTab === "create" ? styles.active : ""
+          }`}
+        >
+          Create Notification
+        </button>
+        <button
+          onClick={() => setActiveTab("list")}
+          className={`${styles.tab} ${
+            activeTab === "list" ? styles.active : ""
+          }`}
+        >
+          All Notifications
+        </button>
       </div>
 
       {activeTab === "create" && (
         <div className={styles.createSection}>
-          <form onSubmit={handleSubmit} className={styles.notificationForm}>
+          <h3>
+            {editingNotification
+              ? "Edit Notification"
+              : "Create New Notification"}
+          </h3>
+
+          {editingNotification && (
+            <div className={styles.editNotice}>
+              <p>
+                Editing: <strong>{editingNotification.title}</strong>
+              </p>
+              <button onClick={cancelEdit} className={styles.cancelEdit}>
+                Cancel Edit
+              </button>
+            </div>
+          )}
+
+          <form
+            onSubmit={
+              editingNotification ? handleUpdateNotification : handleSubmit
+            }
+            className={styles.notificationForm}
+          >
             {error && <div className={styles.error}>{error}</div>}
 
             <div className={styles.formGroup}>
-              <label htmlFor="title">Notification Title</label>
+              <label htmlFor="title">Title</label>
               <input
                 type="text"
                 id="title"
                 name="title"
-                value={notificationData.title}
-                onChange={(e) =>
-                  setNotificationData({
-                    ...notificationData,
-                    title: e.target.value,
-                  })
+                value={
+                  editingNotification ? editData.title : notificationData.title
                 }
+                onChange={(e) => {
+                  if (editingNotification) {
+                    setEditData({
+                      ...editData,
+                      title: e.target.value,
+                    });
+                  } else {
+                    setNotificationData({
+                      ...notificationData,
+                      title: e.target.value,
+                    });
+                  }
+                }}
+                placeholder="Enter notification title..."
                 required
               />
             </div>
@@ -213,85 +371,97 @@ export default function AdminPanel() {
                 id="content"
                 name="content"
                 rows={4}
-                value={notificationData.content}
-                onChange={(e) =>
-                  setNotificationData({
-                    ...notificationData,
-                    content: e.target.value,
-                  })
+                value={
+                  editingNotification
+                    ? editData.content
+                    : notificationData.content
                 }
+                onChange={(e) => {
+                  if (editingNotification) {
+                    setEditData({
+                      ...editData,
+                      content: e.target.value,
+                    });
+                  } else {
+                    setNotificationData({
+                      ...notificationData,
+                      content: e.target.value,
+                    });
+                  }
+                }}
+                placeholder="Enter notification content..."
                 required
               />
-            </div>
-
-            <div className={styles.formGroup}>
-              <label htmlFor="category">Category</label>
-              <select
-                id="category"
-                name="category"
-                value={notificationData.category}
-                onChange={(e) =>
-                  setNotificationData({
-                    ...notificationData,
-                    category: e.target.value,
-                  })
-                }
-              >
-                <option value="general">General</option>
-                <option value="important">Important</option>
-                <option value="events">Events</option>
-              </select>
             </div>
 
             <div className={styles.formGroup}>
               <label>
                 <input
                   type="checkbox"
-                  checked={notificationData.is_published}
-                  onChange={(e) =>
-                    setNotificationData({
-                      ...notificationData,
-                      is_published: e.target.checked,
-                    })
+                  checked={
+                    editingNotification
+                      ? editData.is_published
+                      : notificationData.is_published
                   }
+                  onChange={(e) => {
+                    if (editingNotification) {
+                      setEditData({
+                        ...editData,
+                        is_published: e.target.checked,
+                      });
+                    } else {
+                      setNotificationData({
+                        ...notificationData,
+                        is_published: e.target.checked,
+                      });
+                    }
+                  }}
                 />
                 Publish immediately
               </label>
             </div>
 
-            <div className={styles.formGroup}>
-              <label>Documents</label>
-              <DocumentUpload
-                onDocumentUploaded={handleDocumentUploaded}
-                category="notices"
-                maxFiles={3}
-              />
+            {!editingNotification && (
+              <div className={styles.formGroup}>
+                <label>Documents</label>
+                <DocumentUpload
+                  onDocumentUploaded={handleDocumentUploaded}
+                  category="notices"
+                  maxFiles={3}
+                />
 
-              {attachedDocuments.length > 0 && (
-                <div className={styles.attachedDocuments}>
-                  <h4>Attached Documents:</h4>
-                  {attachedDocuments.map((doc) => (
-                    <div key={doc.id} className={styles.attachedDocument}>
-                      <span>{doc.title}</span>
-                      <button
-                        type="button"
-                        onClick={() => handleRemoveDocument(doc.id)}
-                        className={styles.removeButton}
-                      >
-                        Remove
-                      </button>
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
+                {attachedDocuments.length > 0 && (
+                  <div className={styles.attachedDocuments}>
+                    <h4>Attached Documents</h4>
+                    {attachedDocuments.map((doc) => (
+                      <div key={doc.id} className={styles.attachedDocument}>
+                        <span>{doc.title}</span>
+                        <button
+                          type="button"
+                          onClick={() => handleRemoveDocument(doc.id)}
+                          className={styles.removeButton}
+                        >
+                          Remove
+                        </button>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
 
             <button
               type="submit"
               className={styles.submitBtn}
               disabled={loading}
             >
-              {loading ? "Creating..." : "Create Notification"}
+              {loading
+                ? editingNotification
+                  ? "Updating..."
+                  : "Creating..."
+                : editingNotification
+                ? "Update Notification"
+                : "Create Notification"}
             </button>
           </form>
         </div>
@@ -299,48 +469,66 @@ export default function AdminPanel() {
 
       {activeTab === "list" && (
         <div className={styles.listSection}>
-          <div className={styles.notificationsList}>
-            {notifications.map((notification) => (
-              <div key={notification.id} className={styles.notificationItem}>
+          <h3>All Notifications</h3>
+          {notifications.length === 0 ? (
+            <div className={styles.emptyState}>
+              <h3>No notifications yet</h3>
+              <p>Create your first notification to get started!</p>
+            </div>
+          ) : (
+            notifications.map((notification) => (
+              <div key={notification.id} className={styles.notificationCard}>
                 <div className={styles.notificationHeader}>
-                  <h3>{notification.title}</h3>
-                  <div className={styles.notificationMeta}>
-                    <span
-                      className={`${styles.category} ${
-                        styles[notification.category]
-                      }`}
-                    >
-                      {notification.category}
-                    </span>
-                    <span className={styles.date}>
-                      {formatDate(notification.created_at)}
-                    </span>
-                    <span
-                      className={`${styles.status} ${
-                        notification.is_published
-                          ? styles.published
-                          : styles.draft
-                      }`}
-                    >
-                      {notification.is_published ? "Published" : "Draft"}
-                    </span>
-                  </div>
+                  <h3 className={styles.notificationTitle}>
+                    {notification.title}
+                  </h3>
+                  <span
+                    className={`${styles.statusBadge} ${
+                      notification.is_published
+                        ? styles.published
+                        : styles.draft
+                    }`}
+                  >
+                    {notification.is_published ? "Published" : "Draft"}
+                  </span>
                 </div>
 
                 <p className={styles.notificationContent}>
                   {notification.content}
                 </p>
 
+                <div className={styles.notificationMeta}>
+                  <span>{formatDate(notification.created_at)}</span>
+                  <span>{notification.category}</span>
+                </div>
+
                 {notification.documents &&
                   notification.documents.length > 0 && (
-                    <DocumentPreview
-                      documents={notification.documents}
-                      showTitle={true}
-                      maxDisplay={3}
-                    />
+                    <div className={styles.documentsList}>
+                      <h4>Attached Documents</h4>
+                      <DocumentPreview
+                        documents={notification.documents}
+                        showTitle={true}
+                        maxDisplay={3}
+                      />
+                    </div>
                   )}
 
                 <div className={styles.notificationActions}>
+                  <button
+                    onClick={() => handleEditNotification(notification)}
+                    className={styles.editButton}
+                  >
+                    Edit
+                  </button>
+                  {!notification.is_published && (
+                    <button
+                      onClick={() => handlePublishNotification(notification.id)}
+                      className={styles.publishButton}
+                    >
+                      Publish
+                    </button>
+                  )}
                   <button
                     onClick={() => handleDeleteNotification(notification.id)}
                     className={styles.deleteButton}
@@ -349,14 +537,8 @@ export default function AdminPanel() {
                   </button>
                 </div>
               </div>
-            ))}
-
-            {notifications.length === 0 && (
-              <div className={styles.emptyState}>
-                No notifications found. Create your first notification!
-              </div>
-            )}
-          </div>
+            ))
+          )}
         </div>
       )}
     </div>

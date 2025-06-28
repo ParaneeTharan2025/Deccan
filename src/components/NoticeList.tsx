@@ -30,6 +30,16 @@ export default function NoticeList() {
   const [notices, setNotices] = useState<Notice[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
+  const [expandedNotices, setExpandedNotices] = useState<Set<string>>(
+    new Set()
+  );
+  const [previewModal, setPreviewModal] = useState<{
+    isOpen: boolean;
+    documents: DocumentData[];
+  }>({
+    isOpen: false,
+    documents: [],
+  });
   const noticesPerPage = 5;
 
   useEffect(() => {
@@ -109,6 +119,32 @@ export default function NoticeList() {
     }
   };
 
+  const toggleAttachments = (noticeId: string) => {
+    setExpandedNotices((prev) => {
+      const newSet = new Set(prev);
+      if (newSet.has(noticeId)) {
+        newSet.delete(noticeId);
+      } else {
+        newSet.add(noticeId);
+      }
+      return newSet;
+    });
+  };
+
+  const openAttachmentPreview = (documents: DocumentData[]) => {
+    setPreviewModal({
+      isOpen: true,
+      documents,
+    });
+  };
+
+  const closePreviewModal = () => {
+    setPreviewModal({
+      isOpen: false,
+      documents: [],
+    });
+  };
+
   if (loading) {
     return (
       <div className={styles.loading}>
@@ -142,11 +178,21 @@ export default function NoticeList() {
                 <p>{notice.content}</p>
               </div>
 
-              {notice.documents && notice.documents.length > 0 && (
-                <DocumentPreview
-                  documents={notice.documents}
-                />
-              )}
+              <div className={styles.noticeFooter}>
+                {notice.category !== "general" && (
+                  <span className={styles.noticeCategory}>
+                    {notice.category}
+                  </span>
+                )}
+                {notice.documents && notice.documents.length > 0 && (
+                  <button
+                    className={styles.attachmentLink}
+                    onClick={() => openAttachmentPreview(notice.documents!)}
+                  >
+                    Attachment
+                  </button>
+                )}
+              </div>
             </div>
           ))
         )}
@@ -171,6 +217,32 @@ export default function NoticeList() {
           >
             Next
           </button>
+        </div>
+      )}
+
+      {/* Attachment Preview Modal */}
+      {previewModal.isOpen && (
+        <div className={styles.modalOverlay} onClick={closePreviewModal}>
+          <div
+            className={styles.modalContent}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className={styles.modalHeader}>
+              <h3>Attachments</h3>
+              <button
+                onClick={closePreviewModal}
+                className={styles.modalCloseButton}
+              >
+                ×
+              </button>
+            </div>
+            <div className={styles.modalBody}>
+              <DocumentPreview
+                documents={previewModal.documents}
+                galleryMode={true}
+              />
+            </div>
+          </div>
         </div>
       )}
     </div>

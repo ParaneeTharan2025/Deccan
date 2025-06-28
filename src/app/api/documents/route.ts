@@ -1,5 +1,5 @@
+import { createAdminClient } from "@/lib/supabase";
 import { NextRequest, NextResponse } from "next/server";
-import { supabaseAdmin } from "@/lib/supabase";
 
 // GET all documents
 export async function GET(request: NextRequest) {
@@ -8,6 +8,9 @@ export async function GET(request: NextRequest) {
     const category = searchParams.get("category");
     const fileType = searchParams.get("fileType");
     const published = searchParams.get("published");
+
+    // Create admin client
+    const supabaseAdmin = createAdminClient();
 
     let query = supabaseAdmin
       .from("documents")
@@ -60,6 +63,9 @@ export async function DELETE(request: NextRequest) {
         { status: 400 }
       );
     }
+
+    // Create admin client
+    const supabaseAdmin = createAdminClient();
 
     // Get document details before deletion
     const { data: document, error: fetchError } = await supabaseAdmin

@@ -54,15 +54,20 @@ export default function DocumentUpload({
             formData.append("title", file.name.split(".")[0]);
             formData.append("category", category);
 
-            // Get admin user ID from localStorage
+            // Get admin token for authorization
             const adminToken = localStorage.getItem("adminToken");
-            if (adminToken) {
-              const payload = JSON.parse(atob(adminToken.split(".")[1]));
-              formData.append("uploadedBy", payload.userId);
+            if (!adminToken) {
+              throw new Error("Admin token not found. Please log in again.");
             }
+
+            // Prepare headers with authorization
+            const headers: HeadersInit = {
+              Authorization: `Bearer ${adminToken}`,
+            };
 
             const response = await fetch("/api/documents/upload", {
               method: "POST",
+              headers,
               body: formData,
             });
 

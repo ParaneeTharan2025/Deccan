@@ -112,33 +112,27 @@
 
 .noticeCategory {
   padding: 0.25rem 0.75rem;
-  border-radius: 4px;
-  font-size: 0.9rem;
+  border-radius: 16px;
+  font-size: 0.8rem;
+  font-weight: 500;
   text-transform: capitalize;
-  background: #e9ecef;
+  background: #374151;
+  color: white;
 }
 
-.attachmentCount {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  font-size: 0.85rem;
-  background: #e8f4f8;
-  color: #2c5aa0;
-}
-
-.noticeAttachment {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #3498db;
+.attachmentLink {
+  background: none;
+  border: none;
+  color: #3b82f6;
   text-decoration: none;
   font-size: 0.9rem;
+  cursor: pointer;
+  padding: 0;
+  transition: color 0.2s ease;
 }
 
-.noticeAttachment:hover {
+.attachmentLink:hover {
+  color: #2563eb;
   text-decoration: underline;
 }
 
@@ -193,4 +187,80 @@
     align-items: flex-start;
     gap: 0.5rem;
   }
+
+  .modalContent {
+    max-width: 95vw;
+    max-height: 95vh;
+  }
+
+  .modalBody {
+    padding: 1rem;
+    max-height: 80vh;
+  }
+}
+
+/* Modal Styles */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modalContent {
+  background: white;
+  border-radius: 8px;
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+.modalHeader h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #111827;
+}
+
+.modalCloseButton {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #6b7280;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.modalCloseButton:hover {
+  background: #e5e7eb;
+  color: #374151;
+}
+
+.modalBody {
+  padding: 1.5rem;
+  max-height: 70vh;
+  overflow-y: auto;
 }
