@@ -28,13 +28,18 @@ export default function Navbar() {
           <Link href="/">
             <Image
               src="/images/home/logo.jpeg"
-              alt="Deccan Multi State Housing Cooperative Society Ltd. Logo"
+              alt="Deccan Multi State Housing Co-operative Society Ltd. Logo"
               width={100}
               height={60}
               priority
             />
           </Link>
-          <h1>Deccan Multi State Housing Cooperative Society Ltd</h1>
+          <div className={styles.logoText}>
+            <h1>Deccan Multi State Housing Co-operative Society Ltd</h1>
+            <div className={styles.regdNumber}>
+              Regd # MSCS/CR/1601/2025
+            </div>
+          </div>
         </div>
         <ul className={`${styles.navLinks} ${isMenuOpen ? styles.active : ''}`}>
           <li><Link href="/" className={isActive('/') ? styles.active : ''}>Home</Link></li>

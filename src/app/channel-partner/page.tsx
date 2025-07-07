@@ -6,7 +6,7 @@ export default function ChannelPartner() {
     <div className={styles.channelPartnerPage}>
       <section className={`${styles.hero} ${styles.heroWithBg}`}>
         <div className={styles.heroContent}>
-          <h1>Join as a Channel Partner</h1>
+          <h1>To Join as a Channel Partner</h1>
           <p>Be Part of Our Growing Success Story</p>
         </div>
       </section>
@@ -16,7 +16,7 @@ export default function ChannelPartner() {
           <h2>Golden Opportunity to Reach New Heights</h2>
           <div className={styles.opportunityContent}>
             <p>
-              Join hands with Deccan Multi State Housing Cooperative Society Ltd
+              Join hands with Deccan Multi State Housing Co-operative Society Ltd
               and be part of our growing success story. As a channel partner,
               you&apos;ll have access to exclusive opportunities and resources
               to grow your business while helping others find their dream homes.
@@ -34,7 +34,7 @@ export default function ChannelPartner() {
                 <i className="fas fa-handshake"></i>
                 <h3>Strong Partnership</h3>
                 <p>
-                  Work with a trusted name in the housing cooperative sector
+                  Work with a trusted name in the housing co-operative sector
                 </p>
               </div>
               <div className={styles.highlightCard}>
@@ -49,14 +49,22 @@ export default function ChannelPartner() {
 
       <section className={styles.requirements}>
         <div className={styles.container}>
-          <h2>To Join as a Partner</h2>
+          <h2>To Join as a Channel Partner</h2>
           <div className={styles.contactDetails}>
             <div className={styles.contactCard}>
               <h3>Contact Details</h3>
+              <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
+                <img src="/images/gallery/admin.jpg" alt="Administrator" width={80} height={80} style={{ borderRadius: '50%' }} />
+                <div>
+                  <p style={{ margin: 0, fontWeight: 600 }}>J. Paranee Tharan</p>
+                  <p style={{ margin: 0 }}>Administrator</p>
+                </div>
+              </div>
               <div className={styles.contactInfo}>
                 <p><i className="fas fa-phone"></i> Phone: +91 9442220276, +91 9940023395</p>
                 <p><i className="fas fa-envelope"></i> Email: deccanmultistatehousingsociety@gmail.com</p>
-                <p><i className="fas fa-map-marker-alt"></i> Address: 904, Soundarya colony 6th Avenue, Anna nagar west extension, Chennai - 600101</p>
+                <p><i className="fas fa-map-marker-alt"></i> Address: 904, Soundarya colony 6th Avenue, Anna nagar west extension, Chennai - 600101<br />
+                <i className="fab fa-facebook"></i> Facebook: Deccanmultistatehousingsociety</p>
               </div>
             </div>
           </div>
@@ -65,7 +73,7 @@ export default function ChannelPartner() {
 
       <section className={styles.benefits}>
         <div className={styles.container}>
-          <h2>Benefits of Becoming a Partner</h2>
+          <h2>Benefits of Becoming a Channel Partner</h2>
           <div className={styles.benefitsGrid}>
             <div className={styles.benefitCard}>
               <i className="fas fa-percentage"></i>

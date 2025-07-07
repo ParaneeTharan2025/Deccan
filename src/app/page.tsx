@@ -5,7 +5,7 @@ export default function Home() {
     <>
       <section className={`${styles.hero} ${styles.heroWithBg}`}>
         <div className={styles.heroContent}>
-          <h1>Welcome to Deccan Multi State Housing Cooperative Society Ltd</h1>
+          <h1>Welcome to Deccan Multi State Housing Co-operative Society Ltd</h1>
           <p>Building Communities, Creating Homes, Sale of plots</p>
         </div>
       </section>
@@ -14,17 +14,14 @@ export default function Home() {
         <div className={styles.container}>
           <h2>Introduction</h2>
           <p>
-            Deccan Multi State Housing Cooperative Society Ltd is a Multi State
-            Housing Cooperative Society dedicated to providing quality housing
-            solutions to our members. We believe in creating sustainable
-            communities that enhance the quality of life for all residents.
+          Deccan Multi State Housing Co-operative Society Ltd  is a Multi State Housing
+          Co-operative Society registered under Ministry of Co-Operation, New Delhi, by
+          the office of Central Registrar of Co-operative Societies, New Delhi, vide 
+          Registered Number No. MSCS/CR/1601/2025 dated 18 Feb 2025 dedicated to provide
+           quality housing solutions to our Members.
           </p>
           <p>
-            We have established
-            ourselves as a trusted name in community development and cooperative
-            housing. Our Society ambition is giving house to all. To promote 
-            residential zones in the form of plots with proper approval from the authorities.
-            
+          Our Society ambition is to give house to all.  
           </p>
         </div>
       </section>
@@ -34,8 +31,8 @@ export default function Home() {
           <h2>History of the Society</h2>
           <div className={styles.historyContent}>
             <p>
-              Founded with a vision to revolutionize cooperative housing, Deccan
-              Multi State Housing Cooperative Society Ltd has grown from humble
+              Founded with a vision to revolutionize co-operative housing, Deccan
+              Multi State Housing Co-operative Society Ltd has grown from humble
               beginnings to become a trusted name in community development. Our
               journey is marked by:
             </p>
@@ -78,7 +75,7 @@ export default function Home() {
 
       <section className={styles.administration}>
         <div className={styles.container}>
-          <h2>Proposed Administration</h2>
+          <h2>Society's Administration</h2>
           <div className={styles.adminStructure}>
             <div className={styles.adminContent}>
               <p>

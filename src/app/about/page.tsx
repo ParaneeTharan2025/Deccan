@@ -45,12 +45,25 @@ export default function About() {
                   <div className={styles.directorImage}>
                     <Image
                       src="/images/gallery/director1.jpg"
-                      alt="Director 1"
+                      alt="M.D Nandakumar"
                       width={120}
                       height={120}
                     />
                   </div>
-                  <h4>M.D. Nandakumar</h4>
+                  <h4>M.D Nandakumar</h4>
+                  <p>Director</p>
+                </div>
+                
+                <div className={styles.directorCard}>
+                  <div className={styles.directorImage}>
+                    <Image
+                      src="/images/gallery/director6.jpg"
+                      alt="T. Rajapandiyan"
+                      width={120}
+                      height={120}
+                    />
+                  </div>
+                  <h4>T. Rajapandiyan</h4>
                   <p>Director</p>
                 </div>
                 
@@ -58,25 +71,12 @@ export default function About() {
                   <div className={styles.directorImage}>
                     <Image
                       src="/images/gallery/director2.jpg"
-                      alt="Director 2"
+                      alt="Dr. K. Vijaya Bhaskar Raju"
                       width={120}
                       height={120}
                     />
                   </div>
-                  <h4>Dr. Vijaya Bhaskar Raju</h4>
-                  <p>Director</p>
-                </div>
-                
-                <div className={styles.directorCard}>
-                  <div className={styles.directorImage}>
-                    <Image
-                      src="/images/gallery/director3.jpg"
-                      alt="Director 3"
-                      width={120}
-                      height={120}
-                    />
-                  </div>
-                  <h4>P. Murugan</h4>
+                  <h4>Dr. K. Vijaya Bhaskar Raju</h4>
                   <p>Director</p>
                 </div>
                 
@@ -84,7 +84,7 @@ export default function About() {
                   <div className={styles.directorImage}>
                     <Image
                       src="/images/gallery/director4.jpg"
-                      alt="Director 4"
+                      alt="S. Jayarani Yuvaraj"
                       width={120}
                       height={120}
                     />
@@ -96,26 +96,26 @@ export default function About() {
                 <div className={styles.directorCard}>
                   <div className={styles.directorImage}>
                     <Image
-                      src="/images/gallery/director5.jpg"
-                      alt="Director 5"
+                      src="/images/gallery/director3.jpg"
+                      alt="P. Murugan"
                       width={120}
                       height={120}
                     />
                   </div>
-                  <h4>MG. Diwakar</h4>
+                  <h4>P. Murugan</h4>
                   <p>Director</p>
                 </div>
                 
                 <div className={styles.directorCard}>
                   <div className={styles.directorImage}>
                     <Image
-                      src="/images/gallery/director6.jpg"
-                      alt="Director 6"
+                      src="/images/gallery/director5.jpg"
+                      alt="G. DIWAKAR"
                       width={120}
                       height={120}
                     />
                   </div>
-                  <h4>T Rajapandiyan</h4>
+                  <h4>G. DIWAKAR</h4>
                   <p>Director</p>
                 </div>
               </div>
@@ -151,7 +151,7 @@ export default function About() {
               <li>Provide affordable housing solutions to members</li>
               <li>Sale of Plots</li>
               <li>Facilitate community development</li>
-              <li>Ensure compliance with cooperative society regulations</li>
+              <li>Ensure compliance with co-operative society regulations</li>
               <li>Manage member relations and grievances</li>
             </ul>
           </div>
@@ -244,7 +244,7 @@ export default function About() {
         <div className={styles.container}>
           <h2>Conclusion</h2>
           <p>
-            Deccan Multi State Housing Cooperative Society Ltd continues to
+            Deccan Multi State Housing Co-operative Society Ltd continues to
             strive for excellence in providing quality housing solutions while
             maintaining the highest standards of transparency and member
             satisfaction. Our commitment to community development and

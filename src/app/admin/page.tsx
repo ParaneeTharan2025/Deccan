@@ -53,7 +53,7 @@ export default function AdminLogin() {
         <div className={styles.loginForm}>
           <div className={styles.logo}>
             <h1>Admin Login</h1>
-            <p>Deccan Multi State Housing Cooperative Society</p>
+            <p>Deccan Multi State Housing Co-operative Society</p>
           </div>
 
           <form onSubmit={handleSubmit}>

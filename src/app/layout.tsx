@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Deccan Monogram - Multi State Housing Cooperative Society Ltd",
+  title: "Deccan Monogram - Multi State Housing Co-operative Society Ltd",
   description: "Building Communities, Creating Homes",
 };
 
