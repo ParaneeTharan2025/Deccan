@@ -3,6 +3,7 @@
 import { FormEvent, useState, useEffect } from "react";
 import DocumentUpload from "./DocumentUpload";
 import DocumentPreview from "./DocumentPreview";
+import GalleryManagement from "./GalleryManagement";
 import styles from "@/styles/AdminPanel.module.css";
 
 interface DocumentData {
@@ -39,7 +40,9 @@ export default function AdminPanel() {
   const [notifications, setNotifications] = useState<Notification[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [activeTab, setActiveTab] = useState<"create" | "list">("create");
+  const [activeTab, setActiveTab] = useState<"create" | "list" | "gallery">(
+    "create"
+  );
   const [editingNotification, setEditingNotification] =
     useState<Notification | null>(null);
   const [editData, setEditData] = useState({
@@ -309,6 +312,14 @@ export default function AdminPanel() {
         >
           All Notifications
         </button>
+        <button
+          onClick={() => setActiveTab("gallery")}
+          className={`${styles.tab} ${
+            activeTab === "gallery" ? styles.active : ""
+          }`}
+        >
+          Gallery Management
+        </button>
       </div>
 
       {activeTab === "create" && (
@@ -539,6 +550,12 @@ export default function AdminPanel() {
               </div>
             ))
           )}
+        </div>
+      )}
+
+      {activeTab === "gallery" && (
+        <div className={styles.gallerySection}>
+          <GalleryManagement />
         </div>
       )}
     </div>

@@ -192,3 +192,48 @@
     gap: 1rem;
   }
 }
+
+/* Additional styles for description and state management */
+.description {
+  color: white;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  opacity: 0.9;
+}
+
+/* Loading, Error, and Empty States */
+.loadingState,
+.errorState,
+.emptyState {
+  text-align: center;
+  padding: 3rem;
+  color: #666;
+}
+
+.loadingState p,
+.emptyState p {
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.errorState p {
+  font-size: 1.1rem;
+  margin: 0 0 1rem 0;
+  color: #dc3545;
+}
+
+.retryButton {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.2s;
+}
+
+.retryButton:hover {
+  background: #0056b3;
+}

@@ -46,6 +46,21 @@ export type Notification = {
   created_by?: string;
 };
 
+export type GalleryItem = {
+  id: string;
+  title: string;
+  description?: string;
+  image_url: string;
+  image_key: string;
+  category: string;
+  alt_text?: string;
+  order_index: number;
+  is_published: boolean;
+  created_at: string;
+  updated_at: string;
+  created_by?: string;
+};
+
 export type AdminUser = {
   id: string;
   username: string;
