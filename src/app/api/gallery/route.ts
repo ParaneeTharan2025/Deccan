@@ -31,7 +31,6 @@ export async function GET(request: NextRequest) {
     let query = supabase
       .from("gallery")
       .select("*")
-      .order("order_index", { ascending: true })
       .order("created_at", { ascending: false });
 
     // Filter by published status if specified
@@ -69,16 +68,7 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
-    const {
-      title,
-      description,
-      image_url,
-      image_key,
-      category,
-      alt_text,
-      order_index,
-      is_published,
-    } = body;
+    const { title, image_url, image_key, is_published } = body;
 
     // Validate required fields
     if (!title || !image_url || !image_key) {
@@ -94,12 +84,8 @@ export async function POST(request: NextRequest) {
       .from("gallery")
       .insert({
         title,
-        description: description || null,
         image_url,
         image_key,
-        category: category || "general",
-        alt_text: alt_text || title,
-        order_index: order_index || 0,
         is_published: is_published !== undefined ? is_published : true,
       })
       .select()

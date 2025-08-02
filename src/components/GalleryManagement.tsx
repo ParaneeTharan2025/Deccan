@@ -13,10 +13,6 @@ export default function GalleryManagement() {
   const [editingItem, setEditingItem] = useState<GalleryItem | null>(null);
   const [formData, setFormData] = useState({
     title: "",
-    description: "",
-    category: "general",
-    alt_text: "",
-    order_index: 0,
     is_published: true,
   });
   const [uploadedImage, setUploadedImage] = useState<{
@@ -92,10 +88,6 @@ export default function GalleryManagement() {
         // Reset form and uploaded image
         setFormData({
           title: "",
-          description: "",
-          category: "general",
-          alt_text: "",
-          order_index: 0,
           is_published: true,
         });
         setUploadedImage(null);
@@ -141,10 +133,6 @@ export default function GalleryManagement() {
         setEditingItem(null);
         setFormData({
           title: "",
-          description: "",
-          category: "general",
-          alt_text: "",
-          order_index: 0,
           is_published: true,
         });
 
@@ -203,10 +191,6 @@ export default function GalleryManagement() {
         },
         body: JSON.stringify({
           title: item.title,
-          description: item.description,
-          category: item.category,
-          alt_text: item.alt_text,
-          order_index: item.order_index,
           is_published: !currentStatus, // Toggle the status
         }),
       });
@@ -233,10 +217,6 @@ export default function GalleryManagement() {
     setEditingItem(item);
     setFormData({
       title: item.title,
-      description: item.description || "",
-      category: item.category,
-      alt_text: item.alt_text || "",
-      order_index: item.order_index,
       is_published: item.is_published,
     });
   };
@@ -245,10 +225,6 @@ export default function GalleryManagement() {
     setEditingItem(null);
     setFormData({
       title: "",
-      description: "",
-      category: "general",
-      alt_text: "",
-      order_index: 0,
       is_published: true,
     });
     setUploadedImage(null);
@@ -308,68 +284,6 @@ export default function GalleryManagement() {
               }
               required
               placeholder="Enter image title"
-            />
-          </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="description">Description</label>
-            <textarea
-              id="description"
-              value={formData.description}
-              onChange={(e) =>
-                setFormData({ ...formData, description: e.target.value })
-              }
-              placeholder="Enter image description"
-              rows={3}
-            />
-          </div>
-
-          <div className={styles.formRow}>
-            <div className={styles.formGroup}>
-              <label htmlFor="category">Category</label>
-              <select
-                id="category"
-                value={formData.category}
-                onChange={(e) =>
-                  setFormData({ ...formData, category: e.target.value })
-                }
-              >
-                <option value="general">General</option>
-                <option value="events">Events</option>
-                <option value="group">Group Photos</option>
-                <option value="commercial">Commercial</option>
-                <option value="residential">Residential</option>
-                <option value="amenities">Amenities</option>
-              </select>
-            </div>
-
-            <div className={styles.formGroup}>
-              <label htmlFor="order_index">Order</label>
-              <input
-                type="number"
-                id="order_index"
-                value={formData.order_index}
-                onChange={(e) =>
-                  setFormData({
-                    ...formData,
-                    order_index: parseInt(e.target.value) || 0,
-                  })
-                }
-                min="0"
-              />
-            </div>
-          </div>
-
-          <div className={styles.formGroup}>
-            <label htmlFor="alt_text">Alt Text</label>
-            <input
-              type="text"
-              id="alt_text"
-              value={formData.alt_text}
-              onChange={(e) =>
-                setFormData({ ...formData, alt_text: e.target.value })
-              }
-              placeholder="Alt text for accessibility"
             />
           </div>
 
@@ -456,7 +370,7 @@ export default function GalleryManagement() {
                 <div className={styles.imageWrapper}>
                   <Image
                     src={item.image_url}
-                    alt={item.alt_text || item.title}
+                    alt={item.title}
                     width={300}
                     height={200}
                     className={styles.image}
@@ -472,11 +386,8 @@ export default function GalleryManagement() {
 
                 <div className={styles.cardContent}>
                   <h4>{item.title}</h4>
-                  {item.description && <p>{item.description}</p>}
 
                   <div className={styles.meta}>
-                    <span>Category: {item.category}</span>
-                    <span>Order: {item.order_index}</span>
                     <span>{formatDate(item.created_at)}</span>
                   </div>
 

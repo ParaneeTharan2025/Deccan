@@ -35,16 +35,7 @@ export async function PUT(
     }
 
     const body = await request.json();
-    const {
-      title,
-      description,
-      image_url,
-      image_key,
-      category,
-      alt_text,
-      order_index,
-      is_published,
-    } = body;
+    const { title, image_url, image_key, is_published } = body;
     const { id } = params;
 
     // Validate required fields
@@ -56,10 +47,6 @@ export async function PUT(
 
     const updateData: any = {
       title,
-      description: description || null,
-      category: category || "general",
-      alt_text: alt_text || title,
-      order_index: order_index || 0,
       is_published: is_published !== undefined ? is_published : true,
     };
 
