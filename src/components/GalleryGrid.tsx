@@ -82,24 +82,19 @@ export default function GalleryGrid() {
               {galleryItems.map((item, index) => (
                 <div
                   key={item.id}
-                  className={`${styles.galleryItem} ${
-                    styles[item.category] || ""
-                  }`}
+                  className={styles.galleryItem}
                   onClick={() => openLightbox(index)}
                 >
                   <div className={styles.imageWrapper}>
                     <Image
                       src={item.image_url}
-                      alt={item.alt_text || item.title}
+                      alt={item.title}
                       width={400}
                       height={300}
                       className={styles.image}
                     />
                     <div className={styles.overlay}>
                       <span>{item.title}</span>
-                      {item.description && (
-                        <p className={styles.description}>{item.description}</p>
-                      )}
                     </div>
                   </div>
                 </div>
@@ -115,7 +110,7 @@ export default function GalleryGrid() {
         index={lightboxIndex}
         slides={galleryItems.map((item) => ({
           src: item.image_url,
-          alt: item.alt_text || item.title,
+          alt: item.title,
           title: item.title,
         }))}
       />

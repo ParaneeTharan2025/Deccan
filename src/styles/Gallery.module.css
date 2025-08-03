@@ -193,14 +193,7 @@
   }
 }
 
-/* Additional styles for description and state management */
-.description {
-  color: white;
-  font-size: 0.9rem;
-  margin-top: 0.5rem;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-  opacity: 0.9;
-}
+/* Loading, Error, and Empty States */
 
 /* Loading, Error, and Empty States */
 .loadingState,
