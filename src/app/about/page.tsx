@@ -16,67 +16,85 @@ export default function About() {
           <h2>Board of Directors</h2>
           
           <div className={styles.boardStructure}>
-            {/* Chairman Section */}
+            {/* Chairman Section - Dr. K. Vijaya Bhaskar Raju */}
             <div className={styles.chairmanSection}>
               <div className={styles.chairmanCard}>
                 <div className={styles.chairmanImage}>
                   <Image
-                    src="/images/gallery/chariman.jpg"
-                    alt="Chairman"
+                    src="/images/gallery/director2.jpg"
+                    alt="Dr. K. Vijaya Bhaskar Raju"
                     width={200}
                     height={200}
                   />
                 </div>
-                <h4>Dr. K. Indira</h4>
+                <h4>Dr. K. Vijaya Bhaskar Raju</h4>
                 <p>Chairman</p>
               </div>
             </div>
 
-            {/* Connecting Line */}
+            {/* Connecting Line to Vice Chairman */}
             <div className={styles.connectingLine}>
               <div className={styles.verticalLine}></div>
               <div className={styles.horizontalLine}></div>
             </div>
 
-            {/* Directors Section - Single Line */}
+            {/* Vice Chairman Section - M.D. Nandakumar */}
+            <div className={styles.viceChairmanSection}>
+              <div className={styles.viceChairmanCard}>
+                <div className={styles.viceChairmanImage}>
+                  <Image
+                    src="/images/gallery/director1.jpg"
+                    alt="M.D. Nandakumar"
+                    width={180}
+                    height={180}
+                  />
+                </div>
+                <h4>M.D. Nandakumar</h4>
+                <p>Vice Chairman</p>
+              </div>
+            </div>
+
+            {/* Connecting Line to Managing Director */}
+            <div className={styles.connectingLine}>
+              <div className={styles.verticalLine}></div>
+              <div className={styles.horizontalLine}></div>
+            </div>
+
+            {/* Managing Director Section - T. Rajapandiyan */}
+            <div className={styles.managingDirectorSection}>
+              <div className={styles.managingDirectorCard}>
+                <div className={styles.managingDirectorImage}>
+                  <Image
+                    src="/images/gallery/director6.jpg"
+                    alt="T. Rajapandiyan"
+                    width={180}
+                    height={180}
+                  />
+                </div>
+                <h4>T. Rajapandiyan</h4>
+                <p>Managing Director</p>
+              </div>
+            </div>
+
+            {/* Connecting Line to Directors */}
+            <div className={styles.connectingLine}>
+              <div className={styles.verticalLine}></div>
+              <div className={styles.horizontalLine}></div>
+            </div>
+
+            {/* Directors Section - All Directors at Same Level */}
             <div className={styles.directorsSection}>
               <div className={styles.directorsRow}>
                 <div className={styles.directorCard}>
                   <div className={styles.directorImage}>
                     <Image
-                      src="/images/gallery/director1.jpg"
-                      alt="M.D Nandakumar"
+                      src="/images/gallery/chariman.jpg"
+                      alt="Dr. K. Indira"
                       width={120}
                       height={120}
                     />
                   </div>
-                  <h4>M.D Nandakumar</h4>
-                  <p>Director</p>
-                </div>
-                
-                <div className={styles.directorCard}>
-                  <div className={styles.directorImage}>
-                    <Image
-                      src="/images/gallery/director6.jpg"
-                      alt="T. Rajapandiyan"
-                      width={120}
-                      height={120}
-                    />
-                  </div>
-                  <h4>T. Rajapandiyan</h4>
-                  <p>Director</p>
-                </div>
-                
-                <div className={styles.directorCard}>
-                  <div className={styles.directorImage}>
-                    <Image
-                      src="/images/gallery/director2.jpg"
-                      alt="Dr. K. Vijaya Bhaskar Raju"
-                      width={120}
-                      height={120}
-                    />
-                  </div>
-                  <h4>Dr. K. Vijaya Bhaskar Raju</h4>
+                  <h4>Dr. K. Indira</h4>
                   <p>Director</p>
                 </div>
                 
@@ -124,21 +142,21 @@ export default function About() {
         </div>
       </section>
 
-      {/* Administrator Section */}
+      {/* Chief Executive Officer Section */}
       <section className={styles.administratorSection}>
         <div className={styles.container}>
-          <h2>Administrator</h2>
+          <h2>Chief Executive Officer</h2>
           <div className={styles.administratorCard}>
             <div className={styles.administratorImage}>
               <Image
                 src="/images/gallery/admin.jpg"
-                alt="Administrator"
+                alt="Chief Executive Officer"
                 width={180}
                 height={180}
               />
             </div>
             <h3>J. Paranee Tharan</h3>
-            <p>Administrator</p>
+            <p>Chief Executive Officer</p>
           </div>
         </div>
       </section>
