@@ -54,10 +54,10 @@ export default function ChannelPartner() {
             <div className={styles.contactCard}>
               <h3>Contact Details</h3>
               <div style={{ marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                <img src="/images/gallery/admin.jpg" alt="Administrator" width={80} height={80} style={{ borderRadius: '50%' }} />
+                <img src="/images/gallery/admin.jpg" alt="Chief Executive Officer" width={80} height={80} style={{ borderRadius: '50%' }} />
                 <div>
                   <p style={{ margin: 0, fontWeight: 600 }}>J. Paranee Tharan</p>
-                  <p style={{ margin: 0 }}>Administrator</p>
+                  <p style={{ margin: 0 }}>Chief Executive Officer</p>
                 </div>
               </div>
               <div className={styles.contactInfo}>

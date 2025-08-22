@@ -155,6 +155,104 @@
   font-size: 1.1rem;
 }
 
+/* Vice Chairman Section Styles */
+.viceChairmanSection {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.viceChairmanCard {
+  display: inline-block;
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 3px solid #e74c3c;
+}
+
+.viceChairmanCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.viceChairmanImage {
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #e74c3c;
+}
+
+.viceChairmanImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.viceChairmanCard h4 {
+  font-size: 1.4rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.viceChairmanCard p {
+  color: #e74c3c;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+/* Managing Director Section Styles */
+.managingDirectorSection {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.managingDirectorCard {
+  display: inline-block;
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: 3px solid #f39c12;
+}
+
+.managingDirectorCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.managingDirectorImage {
+  width: 180px;
+  height: 180px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid #f39c12;
+}
+
+.managingDirectorImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.managingDirectorCard h4 {
+  font-size: 1.4rem;
+  color: #2c3e50;
+  margin-bottom: 0.5rem;
+}
+
+.managingDirectorCard p {
+  color: #f39c12;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
 /* Connecting Lines */
 .connectingLine {
   position: relative;
@@ -344,7 +442,7 @@
   margin: 0 auto;
 }
 
-/* Administrator Section Styles */
+/* Chief Executive Officer Section Styles */
 .administratorSection {
   padding: 4rem 0;
   background-color: #f8f9fa;
@@ -438,6 +536,32 @@
   }
 
   .chairmanCard h4 {
+    font-size: 1.3rem;
+  }
+
+  .viceChairmanImage {
+    width: 180px;
+    height: 180px;
+  }
+
+  .viceChairmanCard {
+    padding: 2rem;
+  }
+
+  .viceChairmanCard h4 {
+    font-size: 1.3rem;
+  }
+
+  .managingDirectorImage {
+    width: 180px;
+    height: 180px;
+  }
+
+  .managingDirectorCard {
+    padding: 2rem;
+  }
+
+  .managingDirectorCard h4 {
     font-size: 1.3rem;
   }
 
